@@ -1,0 +1,1286 @@
+<?xml version='1.0' encoding='utf-8'?>
+<MixxxControllerPreset mixxxVersion="2.2" schemaVersion="1">
+    <info>
+        <name>Reloop Buddy</name>
+        <author>Crocodile Andy</author>
+        <description>MIDI Preset for Reloop Buddy</description>
+    </info>
+    <controller id="Reloop">
+        <scriptfiles>
+            <file filename="Reloop-Buddy_scripts.js" functionprefix="MyController"/>
+        </scriptfiles>
+        <controls>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.playpause</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x80</status>
+                <midino>0x00</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.playpause</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x81</status>
+                <midino>0x00</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[QuickEffectRack1_[Channel1]_Effect1]</group>
+                <key>MyController.fxSwitch</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0x88</status>
+                <midino>0x00</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[QuickEffectRack1_[Channel2]_Effect1]</group>
+                <key>MyController.fxSwitch</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0x89</status>
+                <midino>0x00</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.playpause</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x90</status>
+                <midino>0x00</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.playpause</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x91</status>
+                <midino>0x00</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[QuickEffectRack1_[Channel1]_Effect1]</group>
+                <key>MyController.fxSwitch</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0x98</status>
+                <midino>0x00</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[QuickEffectRack1_[Channel2]_Effect1]</group>
+                <key>MyController.fxSwitch</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0x99</status>
+                <midino>0x00</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[QuickEffectRack1_[Channel1]]</group>
+                <key>super1</key>
+                <description>MIDI Learned from 11 messages.</description>
+                <status>0xB8</status>
+                <midino>0x00</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[QuickEffectRack1_[Channel2]]</group>
+                <key>super1</key>
+                <description>MIDI Learned from 11 messages.</description>
+                <status>0xB8</status>
+                <midino>0x00</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>MyController.moveVertical</key>
+                <description>MIDI Learned from 220 messages.</description>
+                <status>0xBE</status>
+                <midino>0x00</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>MyController.moveVertical</key>
+                <description>Twist with Shift-Button.</description>
+                <status>0xBE</status>
+                <midino>0x78</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.setColor</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x80</status>
+                <midino>0x01</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.setColor</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x81</status>
+                <midino>0x01</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.setColor</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x90</status>
+                <midino>0x01</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.setColor</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x91</status>
+                <midino>0x01</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[PreviewDeck1]</group>
+                <key>MyController.previewLoadAndPlay</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0x80</status>
+                <midino>0x02</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[PreviewDeck1]</group>
+                <key>MyController.previewLoadAndPlay</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0x90</status>
+                <midino>0x02</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[PreviewDeck1]</group>
+                <key>MyController.previewLoadAndPlay</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0x81</status>
+                <midino>0x02</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[PreviewDeck1]</group>
+                <key>MyController.previewLoadAndPlay</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0x91</status>
+                <midino>0x02</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.loadTrack</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x9E</status>
+                <midino>0x02</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.loadTrack</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x9E</status>
+                <midino>0x03</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel]</group>
+                <key>MyController.starsDown</key>
+                <description>Affects the last loaded Track</description>
+                <status>0x98</status>
+                <midino>0x05</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.wheelTouchA</key>
+                <description>Deck A.</description>
+                <status>0x80</status>
+                <midino>0x06</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.wheelTouchB</key>
+                <description>Deck B.</description>
+                <status>0x81</status>
+                <midino>0x06</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>MyController.moveToLibraryPane</key>
+                <description>Library scrollwheel press release.</description>
+                <status>0x8E</status>
+                <midino>0x06</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.wheelTouchA</key>
+                <description>Deck A.</description>
+                <status>0x90</status>
+                <midino>0x06</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.wheelTouchB</key>
+                <description>Deck B.</description>
+                <status>0x91</status>
+                <midino>0x06</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel]</group>
+                <key>MyController.starsUp</key>
+                <description>Affects the last loaded Track</description>
+                <status>0x99</status>
+                <midino>0x06</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>MyController.moveToLibraryPane</key>
+                <description>Library scrollwheel press down.</description>
+                <status>0x9E</status>
+                <midino>0x06</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.scratchWheelA</key>
+                <description>Deck A.</description>
+                <status>0xB0</status>
+                <midino>0x06</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.scratchWheelB</key>
+                <description>Deck B.</description>
+                <status>0xB1</status>
+                <midino>0x06</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Master]</group>
+                <key>crossfader</key>
+                <description>MIDI Learned from 3 messages.</description>
+                <status>0xBE</status>
+                <midino>0x08</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.deckRateMsb</key>
+                <description>MIDI Learned from 30 messages.</description>
+                <status>0xB0</status>
+                <midino>0x09</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.deckRateMsb</key>
+                <description>MIDI Learned from 30 messages.</description>
+                <status>0xB1</status>
+                <midino>0x09</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>MyController.resetColor</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x99</status>
+                <midino>0x0B</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>MyController.resetColor</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x99</status>
+                <midino>0x0C</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Master]</group>
+                <key>MyController.headGain</key>
+                <description>MIDI Learned from 8 messages.</description>
+                <status>0xBE</status>
+                <midino>0x0C</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Master]</group>
+                <key>headMix</key>
+                <description>MIDI Learned from 5 messages.</description>
+                <status>0xBE</status>
+                <midino>0x0D</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_1</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x14</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_1</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x14</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_1</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x14</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_1</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x14</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_2</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x15</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_2</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x15</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_2</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x15</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_2</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x15</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_3</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x16</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_3</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x16</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_3</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x16</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_3</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x16</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_4</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x17</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_4</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x17</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_4</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x17</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_4</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x17</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
+                <key>parameter3</key>
+                <description>MIDI Learned from 12 messages.</description>
+                <status>0xB0</status>
+                <midino>0x17</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[EqualizerRack1_[Channel2]_Effect1]</group>
+                <key>parameter3</key>
+                <description>MIDI Learned from 18 messages.</description>
+                <status>0xB1</status>
+                <midino>0x17</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_5</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x18</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_5</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x18</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_5</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x18</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_5</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x18</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_6</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x19</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_6</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x19</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_6</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x19</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_6</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x19</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
+                <key>parameter2</key>
+                <description>MIDI Learned from 15 messages.</description>
+                <status>0xB0</status>
+                <midino>0x19</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[EqualizerRack1_[Channel2]_Effect1]</group>
+                <key>parameter2</key>
+                <description>MIDI Learned from 18 messages.</description>
+                <status>0xB1</status>
+                <midino>0x19</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_7</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x1A</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_7</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x1A</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_7</key>
+                <description>uku 123</description>
+                <status>0x94</status>
+                <midino>0x1A</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_7</key>
+                <description>uku 123</description>
+                <status>0x95</status>
+                <midino>0x1A</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
+                <key>parameter1</key>
+                <description>MIDI Learned from 10 messages.</description>
+                <status>0xB0</status>
+                <midino>0x1A</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[EqualizerRack1_[Channel2]_Effect1]</group>
+                <key>parameter1</key>
+                <description>MIDI Learned from 14 messages.</description>
+                <status>0xB1</status>
+                <midino>0x1A</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>pfl</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x80</status>
+                <midino>0x1B</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>pfl</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x81</status>
+                <midino>0x1B</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_8</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x1B</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_8</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x1B</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>pfl</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x90</status>
+                <midino>0x1B</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>pfl</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x91</status>
+                <midino>0x1B</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_8</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x1B</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_8</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x1B</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_1</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x1C</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_1</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x1C</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_1</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x1C</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_1</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x1C</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>volume</key>
+                <description>MIDI Learned from 220 messages.</description>
+                <status>0xB0</status>
+                <midino>0x1C</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>volume</key>
+                <description>MIDI Learned from 217 messages.</description>
+                <status>0xB1</status>
+                <midino>0x1C</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_2</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x1D</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_2</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x1D</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_2</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x1D</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_2</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x1D</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_3</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x1E</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_3</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x1E</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_3</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x1E</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_3</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x1E</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_4</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x1F</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_4</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x1F</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_4</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x1F</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_4</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x1F</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_5</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x20</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_5</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x20</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.toggleMode</key>
+                <description>Mode-Button.</description>
+                <status>0x90</status>
+                <midino>0x20</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.toggleMode</key>
+                <description>Mode-Button.</description>
+                <status>0x91</status>
+                <midino>0x20</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_5</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x20</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_5</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x20</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_6</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x21</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_6</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x21</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_6</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x21</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_6</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x21</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.starsDeck</key>
+                <description>Affects the Deck</description>
+                <status>0xB0</status>
+                <midino>0x21</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.starsDeck</key>
+                <description>Affects the Deck</description>
+                <status>0xB1</status>
+                <midino>0x21</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_7</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x22</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_7</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x22</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_7</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x22</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_7</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x22</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_8</key>
+                <description>uku 123</description>
+                <status>0x84</status>
+                <midino>0x23</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_8</key>
+                <description>uku 123</description>
+                <status>0x85</status>
+                <midino>0x23</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.hotcue_setclear_8</key>
+                <description>uku 456</description>
+                <status>0x94</status>
+                <midino>0x23</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.hotcue_setclear_8</key>
+                <description>uku 456</description>
+                <status>0x95</status>
+                <midino>0x23</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.setLoopsize</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0xB4</status>
+                <midino>0x34</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.setLoopsize</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0xB5</status>
+                <midino>0x34</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.deckRateLsb</key>
+                <description>MIDI Learned from 30 messages.</description>
+                <status>0xB0</status>
+                <midino>0x3F</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.deckRateLsb</key>
+                <description>MIDI Learned from 30 messages.</description>
+                <status>0xB1</status>
+                <midino>0x3F</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>MyController.toggleLoop</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0x94</status>
+                <midino>0x40</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.toggleLoop</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0x95</status>
+                <midino>0x40</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.addAutoDJ</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0x91</status>
+                <midino>0x24</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>MyController.addAutoDJ</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0x81</status>
+                <midino>0x24</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+        </controls>
+        <outputs/>
+    </controller>
+</MixxxControllerPreset>
