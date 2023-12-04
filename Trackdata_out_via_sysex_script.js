@@ -48,8 +48,8 @@ engine.connectControl("[Channel2]","track_loaded", function(group, bResend) { co
 engine.connectControl("[Channel1]","play_latched", function(group, bResend) { controller.changePlaystate("[Channel1]", false); });
 engine.connectControl("[Channel2]","play_latched", function(group, bResend) { controller.changePlaystate("[Channel2]", false); });
 
-engine.connectControl("[Channel1]","bpm", function(group, bResend) { controller.changeBPM("[Channel1]", true); });
-engine.connectControl("[Channel2]","bpm", function(group, bResend) { controller.changeBPM("[Channel2]", true); });
+//engine.connectControl("[Channel1]","bpm", function(group, bResend) { controller.changeBPM("[Channel1]", true); });
+//engine.connectControl("[Channel2]","bpm", function(group, bResend) { controller.changeBPM("[Channel2]", true); });
 
 engine.connectControl("[Channel1]","bpm", function(group, bResend) { controller.changeCrossfaderBPM("[Channel1]", true); });
 engine.connectControl("[Channel2]","bpm", function(group, bResend) { controller.changeCrossfaderBPM("[Channel2]", true); });
