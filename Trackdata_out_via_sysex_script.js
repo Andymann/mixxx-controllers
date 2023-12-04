@@ -141,7 +141,7 @@ controller.getColorSysex = function(group){
 controller.buildSysex = function(group){
     var tRet = "";
     var tmpChan;
-    tRet = SYSEX_MSG_START;
+    
 
     if(group=="[Master]"){
         tmpChan = "0";
@@ -150,30 +150,37 @@ controller.buildSysex = function(group){
     }else if(group=="[Channel2]"){
         tmpChan = "2";
     }
+
+    tRet = SYSEX_MSG_START;
     tRet += " " + SYSEX_ID_BPM + tmpChan;
     tRet += this.getBpmSysex(group);
     tRet += " " + SYSEX_ID_KEY + tmpChan;
     tRet += " " +this.getKeySysex(group);
+    tRet += " " + SYSEX_MSG_END;
+    sendSysex(tRet);
 
+    tRet = SYSEX_MSG_START;
     tRet += " " + SYSEX_ID_ISPLAYING + tmpChan;
     tRet += " " + this.getIsPlayingSysex(group);
-
     tRet += " " + SYSEX_ID_CROSSFADER + tmpChan;
     tRet += " " + this.getCrossFaderSysex();
+    tRet += " " + SYSEX_MSG_END;
+    sendSysex(tRet);
 
+    tRet = SYSEX_MSG_START;
     tRet += " " + SYSEX_ID_DURATION + tmpChan;
     tRet += " " + this.getDurationSysex(group);
     tRet += " " + SYSEX_ID_FILEBPM + tmpChan;
     tRet += " " + this.getFileBPMSysex(group);
-    
+    tRet += " " + SYSEX_MSG_END;
+    sendSysex(tRet);
+
+    tRet = SYSEX_MSG_START;
     tRet += " " + SYSEX_ID_FILEKEY + tmpChan;
     tRet += " " + this.getFileKeySysex(group);
-
     tRet += " " + SYSEX_ID_COLOR + tmpChan;
     tRet += " " + this.getColorSysex(group);
-
     tRet += " " + SYSEX_MSG_END;
-    
     sendSysex(tRet);
 };
 

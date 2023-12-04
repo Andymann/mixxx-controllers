@@ -93,7 +93,7 @@
   <meta name="current-catalog-service-hash" content="82c569b93da5c18ed649ebd4c2c79437db4611a6a1373e805a3cb001c64130b7">
 
 
-  <meta name="request-id" content="A87F:3119:47A048DA:489A9B6C:656D8A3C" data-pjax-transient="true"/><meta name="html-safe-nonce" content="72fe47d09283e04a28def0d67a39d1c176f8e99470a17b9d4b9a30bbdc5c0e64" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiJBODdGOjMxMTk6NDdBMDQ4REE6NDg5QTlCNkM6NjU2RDhBM0MiLCJ2aXNpdG9yX2lkIjoiNTc4NDY2MDk4MDQ0NDAwNjk3MiIsInJlZ2lvbl9lZGdlIjoiZnJhIiwicmVnaW9uX3JlbmRlciI6ImZyYSJ9" data-pjax-transient="true"/><meta name="visitor-hmac" content="f528d1645c66cc3eb9b949a100e82bb594b0a7ddf012d92a01058fd9eb57e059" data-pjax-transient="true"/>
+  <meta name="request-id" content="8923:4912:443B9EC7:4531604A:656D8A82" data-pjax-transient="true"/><meta name="html-safe-nonce" content="04347eb0ed60e5f5b071fe6078ab791c2f5b430e2a5d95938c8d965fcb5cb166" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiI4OTIzOjQ5MTI6NDQzQjlFQzc6NDUzMTYwNEE6NjU2RDhBODIiLCJ2aXNpdG9yX2lkIjoiMjEzMjc0NTI5MzMzMTc5NDU2MiIsInJlZ2lvbl9lZGdlIjoiZnJhIiwicmVnaW9uX3JlbmRlciI6ImZyYSJ9" data-pjax-transient="true"/><meta name="visitor-hmac" content="bcc9ed79b827a50259cf516a35cf0f346abe9c731fa9ab0bc54a5cc7d7b5381c" data-pjax-transient="true"/>
 
 
     <meta name="hovercard-subject-tag" content="repository:366748672" data-turbo-transient>
@@ -614,7 +614,7 @@
                 
 
 
-<qbsearch-input class="search-input" data-scope="repo:Andymann/mixxx.controller.reloopBuddy" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="y7nEd7jFkZRwHdiWc5m0akmI3tyVhHxcs-u_hpIFP351TVq7ELRBsK-_Q3LVpVO1w2aLnSD3RwSRO17eGgfXIQ" data-max-custom-scopes="10" data-header-redesign-enabled="false" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="Andymann/mixxx.controller.reloopBuddy" data-current-org="" data-current-owner="Andymann" data-logged-in="false">
+<qbsearch-input class="search-input" data-scope="repo:Andymann/mixxx.controller.reloopBuddy" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="phvya1-zC7rv9m4OjVzuupN0bBviAoFiMOn88A4fwsM7_LZVzNZNLjBNxaFcUlitRvBF1y_9x58dwYjU4PVP_Q" data-max-custom-scopes="10" data-header-redesign-enabled="false" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="Andymann/mixxx.controller.reloopBuddy" data-current-org="" data-current-owner="Andymann" data-logged-in="false">
   <div
     class="search-input-container search-with-dialog position-relative d-flex flex-row flex-items-center mr-4 rounded"
     data-action="click:qbsearch-input#searchInputContainerClicked"
@@ -676,7 +676,7 @@
           ></div>
           <div class="QueryBuilder-InputWrapper">
             <div aria-hidden="true" class="QueryBuilder-Sizer" data-target="query-builder.sizer"></div>
-            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-02537eea-7efb-4ca1-a093-08799fda41f0" data-target="query-builder.input" data-action="
+            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-bdc7e605-0a78-41ab-85cb-9c8758169a28" data-target="query-builder.input" data-action="
           input:query-builder#inputChange
           blur:query-builder#inputBlur
           keydown:query-builder#inputKeydown
@@ -781,7 +781,7 @@
                   id="query-builder-test-results"
                 ></ul>
         </div>
-      <div class="FormControl-inlineValidation" id="validation-02537eea-7efb-4ca1-a093-08799fda41f0" hidden="hidden">
+      <div class="FormControl-inlineValidation" id="validation-bdc7e605-0a78-41ab-85cb-9c8758169a28" hidden="hidden">
         <span class="FormControl-inlineValidation--visual">
           <svg aria-hidden="true" height="12" viewBox="0 0 12 12" version="1.1" width="12" data-view-component="true" class="octicon octicon-alert-fill">
     <path d="M4.855.708c.5-.896 1.79-.896 2.29 0l4.675 8.351a1.312 1.312 0 0 1-1.146 1.954H1.33A1.313 1.313 0 0 1 .183 9.058ZM7 7V3H5v4Zm-1 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"></path>
@@ -821,7 +821,7 @@
     </div>
   </div>
 </div>
-      <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="E0zO9zQ3Hx79vVUIp7q1yz4/iL1gl0Z9UGWTt1dJ67qtWcrDymFvmWhBnXm785gUXZSB0xhKMSyOm99N6y/x4Q==" />
+      <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="uyMlYulBsOITvOz0OAuZfnupSco6AbTKQNmOoIkln180TOx0GIJe8KNehr41afK0jKSU/Ij5MaflFWjYzl4qxw==" />
           <p>We read every piece of feedback, and take your input very seriously.</p>
           <textarea name="feedback" class="form-control width-full mb-2" style="height: 120px" id="feedback"></textarea>
           <input name="include_email" id="include_email" aria-label="Include my email address so I can be contacted" class="form-control mr-2" type="checkbox">
@@ -856,7 +856,7 @@
       <div data-view-component="true" class="Overlay-body">        <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
         <div hidden class="create-custom-scope-form" data-target="custom-scopes.createCustomScopeForm">
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="5dsAEJVHyEGP4EPXT3LZhKTRWC6Aa1ssI1w6thPVCuvyt15Wz5DAt3ruNzIuVXEY6yMA2dPNNRg7XOz1b3yupQ==" />
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="V8szSwW2C6dfBSygMjouq/OaGEYusFRXLT6NCgCA4U4kry1o6Os6jxt7f8YXrTplLKLPe9MsQTdm65I/U1tLaQ==" />
           <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
           <input type="hidden" id="custom_scope_id" name="custom_scope_id" data-target="custom-scopes.customScopesIdField">
@@ -874,7 +874,7 @@
                 placeholder="github-ruby"
                 required
                 maxlength="50">
-              <input type="hidden" data-csrf="true" value="Lr1qWwL/mMFaAfHoWkIjMrRz1lQYijAnhPVW88qgy/W4p5+HTfr9lYk/epkSODQw/vVZU4xrmN+mAS7yZtVbbw==" />
+              <input type="hidden" data-csrf="true" value="0c7L9mC53b3v/UhyVbEzO597YoZ3l9jDaqIpFV3Dmh4gP0oivtDtzHn+GDBuW97EpB9FImdHq4Zc1gqM53z4Kg==" />
             </auto-check>
           </div>
 
@@ -910,7 +910,7 @@
 </modal-dialog></div>
     </custom-scopes>
   </div>
-</qbsearch-input><input type="hidden" data-csrf="true" class="js-data-jump-to-suggestions-path-csrf" value="kPRLDpflHFI4va4YqlM1g3faWzrpVjKHcSMfZf4ZEz+xPcLqZbhi/oH71Eb/Xx3CNQp3CWovVMU/SWmTUbTe5w==" />
+</qbsearch-input><input type="hidden" data-csrf="true" class="js-data-jump-to-suggestions-path-csrf" value="mpOYJAUR71l1bX4dAZK9cLtbsg35ScGdsezK24Line67TbwEvovnkMQjOGs039y/Zrep2KCfQCocE28pEvrnlw==" />
 
 
           <div class="position-relative mr-lg-3 d-lg-inline-block">
@@ -944,10 +944,10 @@
         <span class="js-stale-session-flash-signed-out" hidden>You signed out in another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
         <span class="js-stale-session-flash-switched" hidden>You switched accounts on another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
 
-    <button id="icon-button-318cc071-08b1-41b2-8d2f-7e3afdd61bd2" aria-labelledby="tooltip-62e56414-6e3a-49c9-af28-cc99fea5076d" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
+    <button id="icon-button-d472bf90-15cd-4720-8376-b5e1b80a551f" aria-labelledby="tooltip-8da6442f-c933-4cb3-90c7-1302509f3ad5" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
     <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
 </svg>
-</button><tool-tip id="tooltip-62e56414-6e3a-49c9-af28-cc99fea5076d" for="icon-button-318cc071-08b1-41b2-8d2f-7e3afdd61bd2" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
+</button><tool-tip id="tooltip-8da6442f-c933-4cb3-90c7-1302509f3ad5" for="icon-button-d472bf90-15cd-4720-8376-b5e1b80a551f" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
 
 
   
@@ -1227,20 +1227,20 @@
 </ul>
     <div style="visibility:hidden;" data-view-component="true" class="UnderlineNav-actions js-responsive-underlinenav-overflow position-absolute pr-3 pr-md-4 pr-lg-5 right-0">      <action-menu data-select-variant="none" data-view-component="true">
   <focus-group direction="vertical" mnemonics retain>
-    <button id="action-menu-6f79b7dc-52d1-4154-bfd0-8c8dea3cc989-button" popovertarget="action-menu-6f79b7dc-52d1-4154-bfd0-8c8dea3cc989-overlay" aria-controls="action-menu-6f79b7dc-52d1-4154-bfd0-8c8dea3cc989-list" aria-haspopup="true" aria-labelledby="tooltip-1a76edd7-4095-4d06-9064-ddf07a19c0d8" type="button" data-view-component="true" class="Button Button--iconOnly Button--secondary Button--medium UnderlineNav-item">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal Button-visual">
+    <button id="action-menu-2d7d4858-62bc-4f23-b903-3b8f93ccf48d-button" popovertarget="action-menu-2d7d4858-62bc-4f23-b903-3b8f93ccf48d-overlay" aria-controls="action-menu-2d7d4858-62bc-4f23-b903-3b8f93ccf48d-list" aria-haspopup="true" aria-labelledby="tooltip-e7e452d4-2c68-43e3-890a-826d8aaa9c0b" type="button" data-view-component="true" class="Button Button--iconOnly Button--secondary Button--medium UnderlineNav-item">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal Button-visual">
     <path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
 </svg>
-</button><tool-tip id="tooltip-1a76edd7-4095-4d06-9064-ddf07a19c0d8" for="action-menu-6f79b7dc-52d1-4154-bfd0-8c8dea3cc989-button" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Additional navigation options</tool-tip>
+</button><tool-tip id="tooltip-e7e452d4-2c68-43e3-890a-826d8aaa9c0b" for="action-menu-2d7d4858-62bc-4f23-b903-3b8f93ccf48d-button" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Additional navigation options</tool-tip>
 
 
-<anchored-position id="action-menu-6f79b7dc-52d1-4154-bfd0-8c8dea3cc989-overlay" anchor="action-menu-6f79b7dc-52d1-4154-bfd0-8c8dea3cc989-button" align="start" side="outside-bottom" anchor-offset="normal" popover="auto" data-view-component="true">
+<anchored-position id="action-menu-2d7d4858-62bc-4f23-b903-3b8f93ccf48d-overlay" anchor="action-menu-2d7d4858-62bc-4f23-b903-3b8f93ccf48d-button" align="start" side="outside-bottom" anchor-offset="normal" popover="auto" data-view-component="true">
   <div data-view-component="true" class="Overlay Overlay--size-auto">
     
       <div data-view-component="true" class="Overlay-body Overlay-body--paddingNone">          <div data-view-component="true">
-  <ul aria-labelledby="action-menu-6f79b7dc-52d1-4154-bfd0-8c8dea3cc989-button" id="action-menu-6f79b7dc-52d1-4154-bfd0-8c8dea3cc989-list" role="menu" data-view-component="true" class="ActionListWrap--inset ActionListWrap">
+  <ul aria-labelledby="action-menu-2d7d4858-62bc-4f23-b903-3b8f93ccf48d-button" id="action-menu-2d7d4858-62bc-4f23-b903-3b8f93ccf48d-list" role="menu" data-view-component="true" class="ActionListWrap--inset ActionListWrap">
       <li data-menu-item="i0code-tab" data-targets="action-list.items" hidden="hidden" role="none" data-view-component="true" class="ActionListItem">
     
-    <a tabindex="-1" id="item-4f4b1630-afbb-47b8-a586-3beb6b36e0f0" href="/Andymann/mixxx.controller.reloopBuddy" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-ce1d2ceb-ce56-4059-8e12-20ca060aca6e" href="/Andymann/mixxx.controller.reloopBuddy" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-code">
     <path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path>
@@ -1255,7 +1255,7 @@
 </li>
       <li data-menu-item="i1issues-tab" data-targets="action-list.items" hidden="hidden" role="none" data-view-component="true" class="ActionListItem">
     
-    <a tabindex="-1" id="item-366b5a37-a4d2-483d-9b11-f3e8509f8f46" href="/Andymann/mixxx.controller.reloopBuddy/issues" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-076a70c3-c537-47f6-a0fb-a34a5fd30a0f" href="/Andymann/mixxx.controller.reloopBuddy/issues" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-opened">
     <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
@@ -1270,7 +1270,7 @@
 </li>
       <li data-menu-item="i2pull-requests-tab" data-targets="action-list.items" hidden="hidden" role="none" data-view-component="true" class="ActionListItem">
     
-    <a tabindex="-1" id="item-ab90a573-a4c2-47bb-ae0c-618c38456f5e" href="/Andymann/mixxx.controller.reloopBuddy/pulls" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-7666eb75-3119-459b-b2a6-f9c0e515ff52" href="/Andymann/mixxx.controller.reloopBuddy/pulls" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-git-pull-request">
     <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
@@ -1285,7 +1285,7 @@
 </li>
       <li data-menu-item="i3actions-tab" data-targets="action-list.items" hidden="hidden" role="none" data-view-component="true" class="ActionListItem">
     
-    <a tabindex="-1" id="item-fe0bc768-92ce-4999-b670-205cec3da752" href="/Andymann/mixxx.controller.reloopBuddy/actions" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-5fb05185-35cd-4e19-9725-6c16d8c61530" href="/Andymann/mixxx.controller.reloopBuddy/actions" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-play">
     <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm4.879-2.773 4.264 2.559a.25.25 0 0 1 0 .428l-4.264 2.559A.25.25 0 0 1 6 10.559V5.442a.25.25 0 0 1 .379-.215Z"></path>
@@ -1300,7 +1300,7 @@
 </li>
       <li data-menu-item="i4projects-tab" data-targets="action-list.items" hidden="hidden" role="none" data-view-component="true" class="ActionListItem">
     
-    <a tabindex="-1" id="item-843e9eda-a63e-42c5-bd5c-220681937b98" href="/Andymann/mixxx.controller.reloopBuddy/projects" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-347d601c-55a1-47be-a305-6c1c23e5c165" href="/Andymann/mixxx.controller.reloopBuddy/projects" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-table">
     <path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v8h7.75a.25.25 0 0 0 .25-.25V6.5Zm8-1.5V1.75a.25.25 0 0 0-.25-.25H6.5V5Zm-13 1.5v7.75c0 .138.112.25.25.25H5v-8ZM5 5V1.5H1.75a.25.25 0 0 0-.25.25V5Z"></path>
@@ -1315,7 +1315,7 @@
 </li>
       <li data-menu-item="i5security-tab" data-targets="action-list.items" hidden="hidden" role="none" data-view-component="true" class="ActionListItem">
     
-    <a tabindex="-1" id="item-181c3be9-a9c1-4f42-bd86-9bed35341f92" href="/Andymann/mixxx.controller.reloopBuddy/security" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-a6bc19e0-7194-4558-88ae-e396ff59a560" href="/Andymann/mixxx.controller.reloopBuddy/security" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-shield">
     <path d="M7.467.133a1.748 1.748 0 0 1 1.066 0l5.25 1.68A1.75 1.75 0 0 1 15 3.48V7c0 1.566-.32 3.182-1.303 4.682-.983 1.498-2.585 2.813-5.032 3.855a1.697 1.697 0 0 1-1.33 0c-2.447-1.042-4.049-2.357-5.032-3.855C1.32 10.182 1 8.566 1 7V3.48a1.75 1.75 0 0 1 1.217-1.667Zm.61 1.429a.25.25 0 0 0-.153 0l-5.25 1.68a.25.25 0 0 0-.174.238V7c0 1.358.275 2.666 1.057 3.86.784 1.194 2.121 2.34 4.366 3.297a.196.196 0 0 0 .154 0c2.245-.956 3.582-2.104 4.366-3.298C13.225 9.666 13.5 8.36 13.5 7V3.48a.251.251 0 0 0-.174-.237l-5.25-1.68ZM8.75 4.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 1.5 0ZM9 10.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
@@ -1330,7 +1330,7 @@
 </li>
       <li data-menu-item="i6insights-tab" data-targets="action-list.items" hidden="hidden" role="none" data-view-component="true" class="ActionListItem">
     
-    <a tabindex="-1" id="item-2b38883a-65e8-4adf-b53d-41f877730b1e" href="/Andymann/mixxx.controller.reloopBuddy/pulse" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-5f9d5aa2-3a1d-4522-99af-06597ec586b4" href="/Andymann/mixxx.controller.reloopBuddy/pulse" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-graph">
     <path d="M1.5 1.75V13.5h13.75a.75.75 0 0 1 0 1.5H.75a.75.75 0 0 1-.75-.75V1.75a.75.75 0 0 1 1.5 0Zm14.28 2.53-5.25 5.25a.75.75 0 0 1-1.06 0L7 7.06 4.28 9.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.25-3.25a.75.75 0 0 1 1.06 0L10 7.94l4.72-4.72a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Z"></path>
@@ -1791,10 +1791,71 @@
   <div class="Box-header position-relative">
     <h2 class="sr-only">Latest commit</h2>
     <div class="js-details-container Details d-flex rounded-top-2 flex-items-center flex-wrap" data-issue-and-pr-hovercards-enabled>
-      <include-fragment src="/Andymann/mixxx.controller.reloopBuddy/tree-commit/cc74af36118267fc50763ac33a9df6a2bbdb06a4" class="d-flex flex-auto flex-items-center" aria-busy="true" aria-label="Loading latest commit">
-        <div class="Skeleton avatar avatar-user flex-shrink-0 ml-n1 mr-n1 mt-n1 mb-n1" style="width:24px;height:24px;"></div>
-        <div class="Skeleton Skeleton--text col-5 ml-3">&nbsp;</div>
-</include-fragment>      <div class="flex-shrink-0">
+      
+  <div class="flex-shrink-0 ml-n1 mr-n1 mt-n1 mb-n1 hx_avatar_stack_commit" >
+    
+<div class="AvatarStack flex-self-start  " >
+  <div class="AvatarStack-body" >
+      <a class="avatar avatar-user" style="width:24px;height:24px;" data-test-selector="commits-avatar-stack-avatar-link" data-hovercard-type="user" data-hovercard-url="/users/Andymann/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/Andymann">
+        <img data-test-selector="commits-avatar-stack-avatar-image" src="https://avatars.githubusercontent.com/u/2955327?s=48&amp;v=4" width="24" height="24" alt="@Andymann" class=" avatar-user" />
+</a>  </div>
+</div>
+
+  </div>
+  <div class="flex-1 d-flex flex-items-center ml-3 min-width-0">
+    <div class="css-truncate css-truncate-overflow color-fg-muted" >
+          <a class="commit-author user-mention" title="View all commits by Andymann" href="/Andymann/mixxx.controller.reloopBuddy/commits?author=Andymann">Andymann</a>
+    
+  
+
+        <span class="d-none d-sm-inline">
+          <a data-pjax="true" data-test-selector="commit-tease-commit-message" title="cleanup" class="Link--primary markdown-title" href="/Andymann/mixxx.controller.reloopBuddy/commit/cc74af36118267fc50763ac33a9df6a2bbdb06a4">cleanup</a>
+        </span>
+    </div>
+    <span
+      class="hidden-text-expander ml-2 d-inline-block d-inline-block d-lg-none"
+      
+    >
+      <button
+        type="button"
+        class="color-fg-default ellipsis-expander js-details-target"
+        aria-expanded="false"
+        
+      >
+        &hellip;
+      </button>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end ml-3 flex-items-baseline">
+        <include-fragment accept="text/fragment+html" src="/Andymann/mixxx.controller.reloopBuddy/commit/cc74af36118267fc50763ac33a9df6a2bbdb06a4/rollup?direction=sw" class="d-inline" ></include-fragment>
+      <a
+        href="/Andymann/mixxx.controller.reloopBuddy/commit/cc74af36118267fc50763ac33a9df6a2bbdb06a4"
+        class="f6 Link--secondary text-mono ml-2 d-none d-lg-inline"
+        data-pjax="#repo-content-pjax-container"
+        data-turbo-frame="repo-content-turbo-frame"
+        
+      >
+        cc74af3
+      </a>
+      <a
+        href="/Andymann/mixxx.controller.reloopBuddy/commit/cc74af36118267fc50763ac33a9df6a2bbdb06a4"
+        class="Link--secondary ml-2"
+        data-pjax="#repo-content-pjax-container"
+        data-turbo-frame="repo-content-turbo-frame"
+        
+      >
+        <relative-time datetime="2023-12-04T08:12:57Z" class="no-wrap">Dec 4, 2023</relative-time>
+      </a>
+    </div>
+  </div>
+  <div class="pl-0 pl-md-5 flex-order-1 width-full Details-content--hidden">
+      <div class="mt-2">
+        <a data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-test-selector="commit-tease-commit-message" class="Link--primary text-bold" href="/Andymann/mixxx.controller.reloopBuddy/commit/cc74af36118267fc50763ac33a9df6a2bbdb06a4">cleanup</a>
+      </div>
+    <div class="d-flex flex-items-center">
+      <code class="border d-lg-none mt-2 px-1 rounded-2">cc74af3</code>
+    </div>
+  </div>
+      <div class="flex-shrink-0">
         <h2 class="sr-only">Git stats</h2>
         <ul class="list-style-none d-flex">
           <li class="ml-0 ml-md-3">
@@ -1818,8 +1879,7 @@
     
 
 
-  <include-fragment src="/Andymann/mixxx.controller.reloopBuddy/file-list/main">
-        <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/Andymann/mixxx.controller.reloopBuddy/tree/cc74af36118267fc50763ac33a9df6a2bbdb06a4">Permalink</a>
+      <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/Andymann/mixxx.controller.reloopBuddy/tree/cc74af36118267fc50763ac33a9df6a2bbdb06a4">Permalink</a>
   <div data-view-component="true" class="include-fragment-error flash flash-error flash-full py-2">
   <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
     <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
@@ -1848,11 +1908,13 @@
             </div>
 
             <div role="gridcell" class="flex-auto min-width-0 d-none d-md-block col-5 mr-3" >
-                <div class="Skeleton Skeleton--text col-7">&nbsp;</div>
+                <span class="css-truncate css-truncate-target d-block width-fit markdown-title">
+                      <a data-pjax="true" title="send sysex in smaller chunks" class="Link--secondary" href="/Andymann/mixxx.controller.reloopBuddy/commit/0c4f8a8eb81c0a0cd2a1cf1f8d6fd399bda6d5a9">send sysex in smaller chunks</a>
+                </span>
             </div>
 
             <div role="gridcell" class="color-fg-muted text-right" style="width:100px;">
-                <div class="Skeleton Skeleton--text">&nbsp;</div>
+                <relative-time tense="past" datetime="2023-12-02T23:42:01+01:00" data-view-component="true">December 2, 2023 23:42</relative-time>
             </div>
 
           </div>
@@ -1868,11 +1930,13 @@
             </div>
 
             <div role="gridcell" class="flex-auto min-width-0 d-none d-md-block col-5 mr-3" >
-                <div class="Skeleton Skeleton--text col-7">&nbsp;</div>
+                <span class="css-truncate css-truncate-target d-block width-fit markdown-title">
+                      <a data-pjax="true" title="add touchstrip" class="Link--secondary" href="/Andymann/mixxx.controller.reloopBuddy/commit/acf3f50c3ccc050266acdab96e6dcbff1d536331">add touchstrip</a>
+                </span>
             </div>
 
             <div role="gridcell" class="color-fg-muted text-right" style="width:100px;">
-                <div class="Skeleton Skeleton--text">&nbsp;</div>
+                <relative-time tense="past" datetime="2023-08-21T13:40:12+02:00" data-view-component="true">August 21, 2023 13:40</relative-time>
             </div>
 
           </div>
@@ -1888,11 +1952,13 @@
             </div>
 
             <div role="gridcell" class="flex-auto min-width-0 d-none d-md-block col-5 mr-3" >
-                <div class="Skeleton Skeleton--text col-7">&nbsp;</div>
+                <span class="css-truncate css-truncate-target d-block width-fit markdown-title">
+                      <a data-pjax="true" title="turn off Loop-Button when new track is loaded" class="Link--secondary" href="/Andymann/mixxx.controller.reloopBuddy/commit/949f21e17df6c345a506862dec80317e3e9d9ed5">turn off Loop-Button when new track is loaded</a>
+                </span>
             </div>
 
             <div role="gridcell" class="color-fg-muted text-right" style="width:100px;">
-                <div class="Skeleton Skeleton--text">&nbsp;</div>
+                <relative-time tense="past" datetime="2023-11-20T11:51:14+01:00" data-view-component="true">November 20, 2023 11:51</relative-time>
             </div>
 
           </div>
@@ -1908,11 +1974,13 @@
             </div>
 
             <div role="gridcell" class="flex-auto min-width-0 d-none d-md-block col-5 mr-3" >
-                <div class="Skeleton Skeleton--text col-7">&nbsp;</div>
+                <span class="css-truncate css-truncate-target d-block width-fit markdown-title">
+                      <a data-pjax="true" title="first commit" class="Link--secondary" href="/Andymann/mixxx.controller.reloopBuddy/commit/d4170330480964d398e4497fe86743c0587d72a7">first commit</a>
+                </span>
             </div>
 
             <div role="gridcell" class="color-fg-muted text-right" style="width:100px;">
-                <div class="Skeleton Skeleton--text">&nbsp;</div>
+                <relative-time tense="past" datetime="2023-08-13T19:36:39+02:00" data-view-component="true">August 13, 2023 19:36</relative-time>
             </div>
 
           </div>
@@ -1928,11 +1996,13 @@
             </div>
 
             <div role="gridcell" class="flex-auto min-width-0 d-none d-md-block col-5 mr-3" >
-                <div class="Skeleton Skeleton--text col-7">&nbsp;</div>
+                <span class="css-truncate css-truncate-target d-block width-fit markdown-title">
+                      <a data-pjax="true" title="add latest version" class="Link--secondary" href="/Andymann/mixxx.controller.reloopBuddy/commit/4b2ab094f3e0a5204152d498a082deb09657ce29">add latest version</a>
+                </span>
             </div>
 
             <div role="gridcell" class="color-fg-muted text-right" style="width:100px;">
-                <div class="Skeleton Skeleton--text">&nbsp;</div>
+                <relative-time tense="past" datetime="2023-07-11T16:06:48+02:00" data-view-component="true">July 11, 2023 16:06</relative-time>
             </div>
 
           </div>
@@ -1948,11 +2018,13 @@
             </div>
 
             <div role="gridcell" class="flex-auto min-width-0 d-none d-md-block col-5 mr-3" >
-                <div class="Skeleton Skeleton--text col-7">&nbsp;</div>
+                <span class="css-truncate css-truncate-target d-block width-fit markdown-title">
+                      <a data-pjax="true" title="add latest version" class="Link--secondary" href="/Andymann/mixxx.controller.reloopBuddy/commit/4b2ab094f3e0a5204152d498a082deb09657ce29">add latest version</a>
+                </span>
             </div>
 
             <div role="gridcell" class="color-fg-muted text-right" style="width:100px;">
-                <div class="Skeleton Skeleton--text">&nbsp;</div>
+                <relative-time tense="past" datetime="2023-07-11T16:06:48+02:00" data-view-component="true">July 11, 2023 16:06</relative-time>
             </div>
 
           </div>
@@ -1968,11 +2040,13 @@
             </div>
 
             <div role="gridcell" class="flex-auto min-width-0 d-none d-md-block col-5 mr-3" >
-                <div class="Skeleton Skeleton--text col-7">&nbsp;</div>
+                <span class="css-truncate css-truncate-target d-block width-fit markdown-title">
+                      <a data-pjax="true" title="send sysex in smaller chunks" class="Link--secondary" href="/Andymann/mixxx.controller.reloopBuddy/commit/0c4f8a8eb81c0a0cd2a1cf1f8d6fd399bda6d5a9">send sysex in smaller chunks</a>
+                </span>
             </div>
 
             <div role="gridcell" class="color-fg-muted text-right" style="width:100px;">
-                <div class="Skeleton Skeleton--text">&nbsp;</div>
+                <relative-time tense="past" datetime="2023-12-02T23:42:01+01:00" data-view-component="true">December 2, 2023 23:42</relative-time>
             </div>
 
           </div>
@@ -1988,11 +2062,13 @@
             </div>
 
             <div role="gridcell" class="flex-auto min-width-0 d-none d-md-block col-5 mr-3" >
-                <div class="Skeleton Skeleton--text col-7">&nbsp;</div>
+                <span class="css-truncate css-truncate-target d-block width-fit markdown-title">
+                      <a data-pjax="true" title="send sysex in smaller chunks" class="Link--secondary" href="/Andymann/mixxx.controller.reloopBuddy/commit/0c4f8a8eb81c0a0cd2a1cf1f8d6fd399bda6d5a9">send sysex in smaller chunks</a>
+                </span>
             </div>
 
             <div role="gridcell" class="color-fg-muted text-right" style="width:100px;">
-                <div class="Skeleton Skeleton--text">&nbsp;</div>
+                <relative-time tense="past" datetime="2023-12-02T23:42:01+01:00" data-view-component="true">December 2, 2023 23:42</relative-time>
             </div>
 
           </div>
@@ -2002,7 +2078,7 @@
 </button>    </div>
   </div>
 
-</include-fragment>
+
 
 
 </div>

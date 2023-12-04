@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<MixxxControllerPreset mixxxVersion="2.2" schemaVersion="1">
+    <info>
+        <name>Trackdata out via Sysex</name>
+        <author>Crocodile Andy</author>
+        <description>MIDI Preset for DataOut</description>
+    </info>
+    <controller id="AndylandController">
+        <scriptfiles>
+            <file filename="Trackdata_out_via_sysex_script.js" functionprefix="controller"/>
+        </scriptfiles>
+        <controls>
+        <!-- Template Start-->
+            <control>
+                <group>[Channel1]</group>
+                <key>mp.playpause</key>
+                <description>Description goes here</description>
+                <status>0x90</status>
+                <midino>0x00</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>  
+        <!-- Template End--> 
+        </controls>
+        <outputs/>
+    </controller>
+</MixxxControllerPreset>
