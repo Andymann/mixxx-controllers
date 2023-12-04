@@ -10,10 +10,7 @@
 // * Corresponding hardware: https://github.com/Andymann/Arduino_ClockBox_v3
 // ****************************************************************************
 
-/*
 
-    
-*/
 
 const SYSEX_MSG_START = "0xF0";
 const SYSEX_MSG_END = "0xF7";
@@ -26,9 +23,13 @@ const SYSEX_ID_FILEBPM = "0x7F 0x02 0x2";    // 5 Bytes (27 hours max), digit by
 const SYSEX_ID_FILEKEY = "0x7F 0x02 0x3";    // 1 Byte, constant value, https://manual.mixxx.org/2.3/en/chapters/appendix/mixxx_controls.html#control-[ChannelN]-key
 const SYSEX_ID_COLOR = "0x7F 0x02 0x4";      // Decimal representation of 3 Bytes: 8 digits. 0..16777215, constant value
 
+const RESENDS = 3;
 
 function TrackDataOut() {}
 var controller = {};
+
+var sLastSysexString = "";
+var iResendCounter = RESENDS;
 
 controller.init = function() {  
     //----QuickFX initially OFF; setValue also works
@@ -38,11 +39,107 @@ controller.init = function() {
 
 controller.shutdown = function() {};
 
-engine.connectControl("[Channel1]","play_latched", function(value, offset, group) { controller.buildSysex("[Channel1]"); });
-engine.connectControl("[Channel1]","track_loaded", function(group) { controller.buildSysex("[Channel1]"); });
-engine.connectControl("[Channel1]","bpm", function(group) { controller.buildSysex("[Channel1]"); });
-engine.connectControl("[Channel1]","key", function(group) { controller.buildSysex("[Channel1]"); });
-engine.connectControl("[Master]","crossfader", function(group) { controller.buildSysex("[Master]"); });
+//engine.connectControl("[Channel1]","track_loaded", function(group) { controller.buildSysex("[Channel1]"); });
+engine.connectControl("[Channel1]","track_loaded", function(group) { controller.changeTrack("[Channel1]", true); });
+engine.connectControl("[Channel1]","play_latched", function(value, offset, group) { controller.changePlaystate("[Channel1]", true); });
+engine.connectControl("[Channel1]","bpm", function(group) { controller.changeBPM("[Channel1]", true); });
+engine.connectControl("[Channel1]","key", function(group) { controller.changeKey("[Channel1]", false); });
+engine.connectControl("[Master]","crossfader", function(group) { controller.changeCrossfader("[Master]", true); });
+
+engine.beginTimer(500, function() {
+    resendLastSysex();
+}, false);
+
+// New track: complete sysex data are sent
+controller.changeTrack = function(group){
+    
+    this.changeBPM(group, false);
+    this.changeKey(group, false);
+    this.changePlaystate(group, false);
+    this.changeCrossfader(group, false);
+
+    // Constant values
+    this.sendDuration(group, false);
+    this.sendFileBPM(group, false);
+    this.sendFileKey(group, false);
+    this.sendColor(group, false);
+};
+
+controller.sendDuration = function(group, bResend){
+    var sysex = "";
+    sysex += SYSEX_MSG_START;
+    sysex += " ";
+    sysex += this.getDurationSysex(group);
+    sysex +=" ";
+    sysex += SYSEX_MSG_END;
+    sendSysex( sysex, bResend);
+};
+
+controller.sendFileBPM = function(group, bResend){
+    var sysex = SYSEX_MSG_START;
+    sysex += " ";
+    sysex += this.getFileBPMSysex(group);
+    sysex +=" ";
+    sysex += SYSEX_MSG_END;
+    sendSysex( sysex, bResend);
+};
+
+controller.sendFileKey = function(group, bResend){
+    var sysex = SYSEX_MSG_START;
+    sysex += " ";
+    sysex += this.getFileKeySysex(group);
+    sysex +=" ";
+    sysex += SYSEX_MSG_END;
+    sendSysex( sysex, bResend);
+};
+
+controller.sendColor = function(group, bResend){
+    var sysex = SYSEX_MSG_START;
+    sysex += " ";
+    sysex += this.getColorSysex(group);
+    sysex +=" ";
+    sysex += "0xF7";
+    sendSysex( sysex, bResend);
+};
+
+controller.changeBPM = function(group, bResend){
+    var sysex = SYSEX_MSG_START;
+    sysex += " ";
+    sysex += this.getBpmSysex(group);
+    sysex +=" ";
+    sysex += SYSEX_MSG_END;
+    sysex = sysex.trim();
+    sendSysex( sysex, bResend);
+};
+
+controller.changeKey = function(group, bResend){
+    var sysex = SYSEX_MSG_START;
+    sysex += " ";
+    sysex += this.getFileKeySysex(group);
+    sysex +=" ";
+    sysex += SYSEX_MSG_END;
+    sendSysex( sysex, bResend);
+};
+
+controller.changeCrossfader = function(group, bResend){
+    var sysex = SYSEX_MSG_START;
+    sysex += " ";
+    sysex += this.getCrossFaderSysex(group);
+    sysex +=" ";
+    sysex += SYSEX_MSG_END;
+    sendSysex( sysex, bResend);
+};
+
+controller.changePlaystate = function(group, bResend){
+    
+    var sysex = SYSEX_MSG_START;
+    sysex += " ";
+    sysex += this.getIsPlayingSysex(group);
+    sysex +=" ";
+    sysex += SYSEX_MSG_END;
+    sendSysex( sysex, bResend);
+};
+
 
 controller.getKeySysex = function(group){
     var t = engine.getValue(group, "key");
@@ -59,7 +156,7 @@ controller.getBpmSysex = function(group){
     var t = prePadding(s.toString(), 5, "0");
 
     var sArr = t.split('');
-    var tSysex = "";
+    var tSysex = SYSEX_ID_BPM + script.deckFromGroup(group);
     for(var i=0; i<sArr.length; i++){
         tSysex += " " + "0x0" + sArr[i];
     }
@@ -73,15 +170,19 @@ controller.getIsPlayingSysex = function(group){
     }else{
         isPlaying = "0x00";
     }
+    isPlaying = SYSEX_ID_ISPLAYING + script.deckFromGroup(group) + " " + isPlaying;
     return isPlaying;
 }
 
 
-controller.getCrossFaderSysex = function(){
+controller.getCrossFaderSysex = function(group){
     // -1.0 .. 1.0
     var t = engine.getValue("[Master]", "crossfader");
     t += 1.0;  //0.0..2.0
-    return 127.0 * t/2.0;
+    var cf =  127.0 * t/2.0;
+    cf = String(cf, 16);
+    cf = prePadding(cf, 1, "0");
+    return SYSEX_ID_CROSSFADER + script.deckFromGroup(group) + " " + cf.toString();
 };
 
 // Duration is always 5 decimal digits, leading zeros are padded
@@ -92,7 +193,7 @@ controller.getDurationSysex = function(group){
 
     t = prePadding(t, 5, "0");
     var sArr = t.split('');
-    var tSysex = "";
+    var tSysex = SYSEX_ID_DURATION + script.deckFromGroup(group);
     for(var i=0; i<sArr.length; i++){
         tSysex += " " + "0x0" + sArr[i];
     }
@@ -105,23 +206,22 @@ controller.getFileBPMSysex = function(group){
     var s = Math.floor( x );
     var t = prePadding(s.toString(), 5, "0");
     var sArr = t.split('');
-    var tSysex = "";
+    var tSysex = SYSEX_ID_FILEBPM + script.deckFromGroup(group);
     for(var i=0; i<sArr.length; i++){
         tSysex += " " + "0x0" + sArr[i];
     }
     tSysex = tSysex.trim();
     return tSysex;
-}
+};
 
 controller.getFileKeySysex = function(group){
     var t = engine.getValue(group, "file_key");
-    var tSysex = "0x" + decimalToHex(t).toString();
+    var tSysex = SYSEX_ID_FILEKEY + script.deckFromGroup(group) + " " + "0x" + decimalToHex(t).toString();
     return tSysex;
-}
+};
 
 // Decimal representation of 3-byte Value. 8 digits: 0..16777215, leading zeros are padded
 controller.getColorSysex = function(group){
-    var strSysex = "";
     var s = parseInt(engine.getValue(group, "track_color"));
     if(s==-1){
         s=0;
@@ -129,65 +229,29 @@ controller.getColorSysex = function(group){
     var t = prePadding(s.toString(), 8, "0");
 
     var sArr = t.split('');
-    var tSysex = "";
+    var tSysex = SYSEX_ID_COLOR + script.deckFromGroup(group);
     for(var i=0; i<sArr.length; i++){
         tSysex += " " + "0x0" + sArr[i];
     }
     tSysex = tSysex.trim();
     return tSysex;
-}
-
-
-controller.buildSysex = function(group){
-    var tRet = "";
-    var tmpChan;
-    
-
-    if(group=="[Master]"){
-        tmpChan = "0";
-    }else if(group=="[Channel1]"){
-       tmpChan = "1";
-    }else if(group=="[Channel2]"){
-        tmpChan = "2";
-    }
-
-    tRet = SYSEX_MSG_START;
-    tRet += " " + SYSEX_ID_BPM + tmpChan;
-    tRet += this.getBpmSysex(group);
-    tRet += " " + SYSEX_ID_KEY + tmpChan;
-    tRet += " " +this.getKeySysex(group);
-    tRet += " " + SYSEX_MSG_END;
-    sendSysex(tRet);
-
-    tRet = SYSEX_MSG_START;
-    tRet += " " + SYSEX_ID_ISPLAYING + tmpChan;
-    tRet += " " + this.getIsPlayingSysex(group);
-    tRet += " " + SYSEX_ID_CROSSFADER + tmpChan;
-    tRet += " " + this.getCrossFaderSysex();
-    tRet += " " + SYSEX_MSG_END;
-    sendSysex(tRet);
-
-    tRet = SYSEX_MSG_START;
-    tRet += " " + SYSEX_ID_DURATION + tmpChan;
-    tRet += " " + this.getDurationSysex(group);
-    tRet += " " + SYSEX_ID_FILEBPM + tmpChan;
-    tRet += " " + this.getFileBPMSysex(group);
-    tRet += " " + SYSEX_MSG_END;
-    sendSysex(tRet);
-
-    tRet = SYSEX_MSG_START;
-    tRet += " " + SYSEX_ID_FILEKEY + tmpChan;
-    tRet += " " + this.getFileKeySysex(group);
-    tRet += " " + SYSEX_ID_COLOR + tmpChan;
-    tRet += " " + this.getColorSysex(group);
-    tRet += " " + SYSEX_MSG_END;
-    sendSysex(tRet);
 };
 
-function sendSysex(p){
+
+
+
+function sendSysex(p, bResend){
     p= p.replace("  ", " "); // Wo kommt das her?
     var arrVal = p.split(' ');
-    var arrSysex = [SYSEX_MSG_START];
+    var arrSysex = [];
+
+    if(bResend){
+        iResendCounter = RESENDS;
+    }else{
+        iResendCounter = 0;
+    }
+
+    sLastSysexString = p; //global parken um ggf nochmal senden zu koennen
 
     for(var i=0; i<arrVal.length; i++){
        arrSysex.push( Number(arrVal[i]) );
@@ -196,6 +260,19 @@ function sendSysex(p){
     if(arrSysex.length > 2){
         midi.sendSysexMsg(arrSysex, arrSysex.length);
     }
+}
+
+// sometimes data processing via midi is too slow (e.g. pitch fader) so we make sure that the last value is
+// transmitted another time
+//
+// this function is repeatedly called via timer interval
+function resendLastSysex(){
+    if(sLastSysexString.length>0){ 
+        if(iResendCounter>0){
+            sendSysex( sLastSysexString, false );
+            iResendCounter--;
+        }
+    } 
 }
 
 function decimalToHex(d, padding) {
