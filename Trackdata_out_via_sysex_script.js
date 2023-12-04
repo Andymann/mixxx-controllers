@@ -68,27 +68,32 @@ engine.beginTimer(500, function() {
 // New track: complete sysex data are sent
 controller.changeTrack = function(group, bResend){
     
-    this.changeBPM(group, bResend);
-    this.changeKey(group, bResend);
-    this.changePlaystate(group, bResend);
-    this.changeCrossfader(group, bResend);
+    engine.beginTimer(500, function() {
+        this.changeBPM(group, bResend);
+        this.changeKey(group, bResend);
+        this.changePlaystate(group, bResend);
+        this.changeCrossfader(group, bResend);
 
-    // Constant values
-    this.sendDuration(group, bResend);
-    this.sendFileBPM(group, bResend);
-    this.sendFileKey(group, bResend);
-    this.sendColor(group, bResend);
+        // Constant values
+        this.sendDuration(group, bResend);
+        this.sendFileBPM(group, bResend);
+        this.sendFileKey(group, bResend);
+        this.sendColor(group, bResend);
+        
+    }, true);
 };
 
 changeTrack2 = function(group){
-
-    // BUG:
-    // duration is alway 1 behind.
-    var t = engine.getValue(group, "duration");
+    engine.beginTimer(5, function() {
+        var t = engine.getValue(group, "duration");
     print("--------------------" + group + " " + t);
 
     var u = engine.getValue(group, "bpm");
     print("--------------------" + group + " " + u);
+    }, true);
+    // BUG:
+    // duration is alway 1 behind.
+    
 };
 
 controller.sendDuration = function(group, bResend){
@@ -247,7 +252,7 @@ controller.getCrossFaderSysex = function(group){
 // Duration is always 5 decimal digits, leading zeros are padded
 controller.getDurationSysex = function(group){
     var t = engine.getValue(group, "duration");
-    //print("--------------------" + group + " " + t);
+    print("--------------------" + group + " " + t);
     var s = Math.floor( t );
     var p = s.toString();
 
