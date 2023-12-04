@@ -39,9 +39,8 @@ controller.init = function() {
 
 controller.shutdown = function() {};
 
-//engine.connectControl("[Channel1]","track_loaded", function(group) { controller.buildSysex("[Channel1]"); });
-engine.connectControl("[Channel1]","track_loaded", function(group) { controller.changeTrack("[Channel1]", true); });
-engine.connectControl("[Channel1]","play_latched", function(value, offset, group) { controller.changePlaystate("[Channel1]", true); });
+engine.connectControl("[Channel1]","track_loaded", function(group) { controller.changeTrack("[Channel1]", false); });
+engine.connectControl("[Channel1]","play_latched", function(value, offset, group) { controller.changePlaystate("[Channel1]", false); });
 engine.connectControl("[Channel1]","bpm", function(group) { controller.changeBPM("[Channel1]", true); });
 engine.connectControl("[Channel1]","key", function(group) { controller.changeKey("[Channel1]", false); });
 engine.connectControl("[Master]","crossfader", function(group) { controller.changeCrossfader("[Master]", true); });
@@ -51,18 +50,18 @@ engine.beginTimer(500, function() {
 }, false);
 
 // New track: complete sysex data are sent
-controller.changeTrack = function(group){
+controller.changeTrack = function(group, bResend){
     
-    this.changeBPM(group, false);
-    this.changeKey(group, false);
-    this.changePlaystate(group, false);
-    this.changeCrossfader(group, false);
+    this.changeBPM(group, bResend);
+    this.changeKey(group, bResend);
+    this.changePlaystate(group, bResend);
+    this.changeCrossfader(group, bResend);
 
     // Constant values
-    this.sendDuration(group, false);
-    this.sendFileBPM(group, false);
-    this.sendFileKey(group, false);
-    this.sendColor(group, false);
+    this.sendDuration(group, bResend);
+    this.sendFileBPM(group, bResend);
+    this.sendFileKey(group, bResend);
+    this.sendColor(group, bResend);
 };
 
 controller.sendDuration = function(group, bResend){
@@ -152,7 +151,8 @@ controller.getBpmSysex = function(group){
     var x = engine.getValue(group, "bpm");
     x *= 100;
 
-    var s = Math.floor( x );
+    //var s = Math.floor( x );
+    var s = Math.round( x );
     var t = prePadding(s.toString(), 5, "0");
 
     var sArr = t.split('');
