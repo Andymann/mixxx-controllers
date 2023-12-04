@@ -25,7 +25,7 @@ const SYSEX_ID_COLOR = "0x7F 0x02 0x4";      // Decimal representation of 3 Byte
 
 const RESENDS = 3;
 
-function TrackDataOut() {}
+//function TrackDataOut() {}
 var controller = {};
 
 var sLastSysexString = "";
@@ -40,26 +40,30 @@ controller.init = function() {
 
 controller.shutdown = function() {};
 
-engine.connectControl("[Channel1]","track_loaded", function(group) { controller.changeTrack("[Channel1]", false); });
-engine.connectControl("[Channel2]","track_loaded", function(group) { controller.changeTrack("[Channel2]", false); });
+engine.connectControl("[Channel1]","track_loaded", function(group, bResend) { controller.changeTrack("[Channel1]", false); });
+engine.connectControl("[Channel2]","track_loaded", function(group, bResend) { controller.changeTrack("[Channel2]", false); });
 
-engine.connectControl("[Channel1]","play_latched", function(value, offset, group) { controller.changePlaystate("[Channel1]", false); });
-engine.connectControl("[Channel2]","play_latched", function(value, offset, group) { controller.changePlaystate("[Channel2]", false); });
+//engine.connectControl("[Channel1]","track_loaded", function(group) { changeTrack2("[Channel1]"); });
 
-//engine.connectControl("[Channel1]","bpm", function(group) { controller.changeBPM("[Channel1]", true); });
-//engine.connectControl("[Channel2]","bpm", function(group) { controller.changeBPM("[Channel2]", true); });
+engine.connectControl("[Channel1]","play_latched", function(group, bResend) { controller.changePlaystate("[Channel1]", false); });
+engine.connectControl("[Channel2]","play_latched", function(group, bResend) { controller.changePlaystate("[Channel2]", false); });
 
-engine.connectControl("[Channel1]","bpm", function(group) { controller.changeCrossfaderBPM("[Channel1]", true); });
-engine.connectControl("[Channel2]","bpm", function(group) { controller.changeCrossfaderBPM("[Channel2]", true); });
+engine.connectControl("[Channel1]","bpm", function(group, bResend) { controller.changeBPM("[Channel1]", true); });
+engine.connectControl("[Channel2]","bpm", function(group, bResend) { controller.changeBPM("[Channel2]", true); });
 
-engine.connectControl("[Channel1]","key", function(group) { controller.changeKey("[Channel1]", false); });
-engine.connectControl("[Channel2]","key", function(group) { controller.changeKey("[Channel2]", false); });
+engine.connectControl("[Channel1]","bpm", function(group, bResend) { controller.changeCrossfaderBPM("[Channel1]", true); });
+engine.connectControl("[Channel2]","bpm", function(group, bResend) { controller.changeCrossfaderBPM("[Channel2]", true); });
 
-engine.connectControl("[Master]","crossfader", function(group) { controller.changeCrossfader("[Master]", true); });
+engine.connectControl("[Channel1]","key", function(group, bResend) { controller.changeKey("[Channel1]", false); });
+engine.connectControl("[Channel2]","key", function(group, bResend) { controller.changeKey("[Channel2]", false); });
+
+engine.connectControl("[Master]","crossfader", function(group, bResend) { controller.changeCrossfader("[Master]", true); });
+
 
 engine.beginTimer(500, function() {
     resendLastSysex();
 }, false);
+
 
 // New track: complete sysex data are sent
 controller.changeTrack = function(group, bResend){
@@ -74,6 +78,17 @@ controller.changeTrack = function(group, bResend){
     this.sendFileBPM(group, bResend);
     this.sendFileKey(group, bResend);
     this.sendColor(group, bResend);
+};
+
+changeTrack2 = function(group){
+
+    // BUG:
+    // duration is alway 1 behind.
+    var t = engine.getValue(group, "duration");
+    print("--------------------" + group + " " + t);
+
+    var u = engine.getValue(group, "bpm");
+    print("--------------------" + group + " " + u);
 };
 
 controller.sendDuration = function(group, bResend){
@@ -232,11 +247,12 @@ controller.getCrossFaderSysex = function(group){
 // Duration is always 5 decimal digits, leading zeros are padded
 controller.getDurationSysex = function(group){
     var t = engine.getValue(group, "duration");
+    //print("--------------------" + group + " " + t);
     var s = Math.floor( t );
-    var t = s.toString();
+    var p = s.toString();
 
-    t = prePadding(t, 5, "0");
-    var sArr = t.split('');
+    p = prePadding(p, 5, "0");
+    var sArr = p.split('');
     var tSysex = SYSEX_ID_DURATION + script.deckFromGroup(group);
     for(var i=0; i<sArr.length; i++){
         tSysex += " " + "0x0" + sArr[i];
