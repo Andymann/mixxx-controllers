@@ -29,6 +29,7 @@ function TrackDataOut() {}
 var controller = {};
 
 var sLastSysexString = "";
+var fLastBPM = 0.0;
 var iResendCounter = RESENDS;
 
 controller.init = function() {  
@@ -40,9 +41,20 @@ controller.init = function() {
 controller.shutdown = function() {};
 
 engine.connectControl("[Channel1]","track_loaded", function(group) { controller.changeTrack("[Channel1]", false); });
+engine.connectControl("[Channel2]","track_loaded", function(group) { controller.changeTrack("[Channel2]", false); });
+
 engine.connectControl("[Channel1]","play_latched", function(value, offset, group) { controller.changePlaystate("[Channel1]", false); });
-engine.connectControl("[Channel1]","bpm", function(group) { controller.changeBPM("[Channel1]", true); });
+engine.connectControl("[Channel2]","play_latched", function(value, offset, group) { controller.changePlaystate("[Channel2]", false); });
+
+//engine.connectControl("[Channel1]","bpm", function(group) { controller.changeBPM("[Channel1]", true); });
+//engine.connectControl("[Channel2]","bpm", function(group) { controller.changeBPM("[Channel2]", true); });
+
+engine.connectControl("[Channel1]","bpm", function(group) { controller.changeCrossfaderBPM("[Channel1]", true); });
+engine.connectControl("[Channel2]","bpm", function(group) { controller.changeCrossfaderBPM("[Channel2]", true); });
+
 engine.connectControl("[Channel1]","key", function(group) { controller.changeKey("[Channel1]", false); });
+engine.connectControl("[Channel2]","key", function(group) { controller.changeKey("[Channel2]", false); });
+
 engine.connectControl("[Master]","crossfader", function(group) { controller.changeCrossfader("[Master]", true); });
 
 engine.beginTimer(500, function() {
@@ -101,15 +113,38 @@ controller.sendColor = function(group, bResend){
     sendSysex( sysex, bResend);
 };
 
+//Sends out BPM values on CHANGE
 controller.changeBPM = function(group, bResend){
-    var sysex = SYSEX_MSG_START;
-    sysex += " ";
-    sysex += this.getBpmSysex(group);
-    sysex +=" ";
-    sysex += SYSEX_MSG_END;
-    sysex = sysex.trim();
-    sendSysex( sysex, bResend);
+    var tmp = engine.getValue(group, "bpm");
+    if( tmp!=fLastBPM){
+        var sysex = SYSEX_MSG_START;
+        sysex += " ";
+        sysex += this.getBpmSysex(group);
+        sysex +=" ";
+        sysex += SYSEX_MSG_END;
+        sysex = sysex.trim();
+        sendSysex( sysex, bResend);
+        fLastBPM = tmp;
+    }   
+    
 };
+
+// Send BPM data based on Crossfader setting
+controller.changeCrossfaderBPM = function(group, bResend){
+
+    var t = engine.getValue("[Master]", "crossfader");
+    if(t<=0.0){
+        //Crossfader links + mitte
+        if(group=="[Channel1]"){
+            this.changeBPM("[Channel1]", bResend);
+        }
+    }else{
+        if(group=="[Channel2]"){
+            this.changeBPM("[Channel2]", bResend);
+        }
+    }
+};
+
 
 controller.changeKey = function(group, bResend){
     var sysex = SYSEX_MSG_START;
@@ -120,7 +155,16 @@ controller.changeKey = function(group, bResend){
     sendSysex( sysex, bResend);
 };
 
+//changing the crossfader also affects which deck is setting the BPM for external gear
 controller.changeCrossfader = function(group, bResend){
+
+    var t = engine.getValue("[Master]", "crossfader");
+    if(t<=0.0){
+        this.changeBPM("[Channel1]", false);
+    }else{
+        this.changeBPM("[Channel2]", false);
+    }
+
     var sysex = SYSEX_MSG_START;
     sysex += " ";
     sysex += this.getCrossFaderSysex(group);
