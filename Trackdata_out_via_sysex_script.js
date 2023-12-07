@@ -169,7 +169,7 @@ controller.changeCrossfaderBPM = function(group, bResend){
 controller.changeKey = function(group, bResend){
     var sysex = SYSEX_MSG_START;
     sysex += " ";
-    sysex += this.getFileKeySysex(group);
+    sysex += this.getKeySysex(group);
     sysex +=" ";
     sysex += SYSEX_MSG_END;
     sendSysex( sysex, bResend);
@@ -206,7 +206,7 @@ controller.changePlaystate = function(group, bResend){
 
 controller.getKeySysex = function(group){
     var t = engine.getValue(group, "key");
-    var tSysex = "0x" + decimalToHex(t).toString();
+    var tSysex = SYSEX_ID_KEY + script.deckFromGroup(group)+ " " + "0x" + decimalToHex(t).toString();
     return tSysex;
 };
 
