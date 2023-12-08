@@ -484,6 +484,7 @@ mp._hotcue_setclear = function(value, group, hotcue){
     }
  };
 
+
  mp.loopToggle = function(midichan, control, value, status, group){
     // beatloop_activate
     var deck = script.deckFromGroup(group)-1;
@@ -825,10 +826,11 @@ mp.setLED = function (value, offset, group){
         midi.sendShortMsg(0x91, offset, state_full);
     }
 };
-
+/*
 mp.loadTrack = function(midichan, control, value, status, group){
     var deck = script.deckFromGroup(group);
     mp.padsOff_Deck( deck );
+    mp.loopOff( deck );
     mp.mode[deck-1]= MODE_NORMAL;
     
     engine.setValue(group, "LoadSelectedTrack", 1 );
@@ -841,6 +843,17 @@ mp.loadTrack = function(midichan, control, value, status, group){
     engine.setParameter("[Channel" + deck.toString() +"]", "pfl", 1);
 
 };
+*/
+
+mp.loopOff = function(group){
+
+    var deck = script.deckFromGroup(group)-1;
+    engine.setValue(group, "loop_enabled", 0);
+
+    //---Maybe 'someone' changed 'something' via the GUI
+    mp.loopState[deck]= STATE_INACTIVE;
+    midi.sendShortMsg(0x94 + deck, 0x32, 0x00);
+ }
 
 mp.previewLoadAndPlay = function(midichan, control, value, status, group){
     if(value == 127){
@@ -1117,6 +1130,8 @@ mp.loadTrack = function (midichan, control, value, status, group) {
 	}
 
 	midi.sendShortMsg(0x9f, deck+1, value);
+
+    mp.loopOff( group );
 };
 
 mp.scrollWheelClick = function (midichan, control, value, status, group) {
