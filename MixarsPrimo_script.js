@@ -1275,3 +1275,6 @@ mp.touchStrip = function (midichan, control, value, status, group) {
 	}
 
 };
+mp.syncButton = function(midichan, control, value, status, group){
+    
+};
