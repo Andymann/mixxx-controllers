@@ -58,6 +58,7 @@ mp.pitchLsbValue = [0x00, 0x00];
 
 // Scratch algorithm parameters
 mp.scratchParams = {
+    ticks: 600,
     recordSpeed: 33 + 1/3,
     alpha: (1.0/10),
     beta: (1.0/10)/32,
@@ -636,27 +637,32 @@ mp.lineFaderFine = function(midichan, control, value, status, group){
 mp.jogWheelTouch = function(midichan, control, value, status, group){
     var deckFromGroup = script.deckFromGroup(group);
     if(value == 0x7f){
-        engine.scratchEnable(deckFromGroup, 360, mp.scratchParams.recordSpeed, mp.scratchParams.alpha, mp.scratchParams.beta, mp.scratchParams.ramp);
+        engine.scratchEnable(deckFromGroup, mp.scratchParams.ticks, mp.scratchParams.recordSpeed, mp.scratchParams.alpha, mp.scratchParams.beta, mp.scratchParams.ramp);
     }else{
         engine.scratchDisable(deckFromGroup);
     }
 };
 
 mp.jogWheelTwist = function(midichan, control, value, status, group){
-    var deckFromGroup = script.deckFromGroup(group);
-    var newValue;
-    if (value > 0x40) {
-        newValue = value;
-        newValue -= 0x3f;
-        //newValue=1;
-    } else if (value < 0x40) {
-        newValue = value;
-        newValue -= 0x41
-        //newValue = -1;
+    //var deckFromGroup = script.deckFromGroup(group);
+    // We want extra-tight behaviour that's why deckFromGroup is not derived from an
+    // expensive string-operation
+    var deckFromGroup = 1;
+    if(status==0xB1){
+        deckFromGroup=2;
     }
-
+    
+    var newValue;
+    
+    if (value > 0x40) {
+        newValue = value-0x3F;
+    } 
+    else if (value < 0x40) {
+        newValue = value-0x41;
+    }
+    
     if (engine.isScratching(deckFromGroup)) {
-        engine.scratchTick(deckFromGroup, newValue/1.75); // Scratch!
+        engine.scratchTick(deckFromGroup, (newValue/1.0)); // Scratch!
     }else{
         engine.setValue(group, 'jog', newValue/0x0a); // Pitch bend
     }
