@@ -1124,7 +1124,8 @@ mp.libraryScroll = function (midichan, control, value, status, group) {
 
 mp.loadTrack = function (midichan, control, value, status, group) {
 	var deck = script.deckFromGroup(group);
-
+    mp.lastDeckLoaded = group;
+    
 	if(value > 0){
 		engine.setValue(group, "LoadSelectedTrack", 1 );
 	}
