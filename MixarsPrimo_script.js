@@ -788,6 +788,11 @@ mp.eq = function (midichan, control, value, status, group) {
 	}
 };
 
+mp.masterGain = function (midichan, control, value, status, group) {
+    //engine.setValue("[Master]","gain" , value*(5/127.0) -value*(3.0/127));
+    engine.setValue("[Master]","gain" , value*(5.0/127.0) );
+};
+
 mp.gain = function (midichan, control, value, status, group) {
 	engine.setValue(group,"pregain" , value*(4/127.0)-value*(2.0/127));
 };

@@ -545,6 +545,16 @@
             </control>
             <control>
                 <group>[Master]</group>
+                <key>mp.masterGain</key>
+                <description>Master gain</description>
+                <status>0xbf</status>
+                <midino>0x0a</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Master]</group>
                 <key>mp.crossFaderCoarse</key>
                 <description>Crossfader (coarse)</description>
                 <status>0xbf</status>
