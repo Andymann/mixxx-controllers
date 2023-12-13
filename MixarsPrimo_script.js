@@ -213,6 +213,9 @@ engine.connectControl("[EffectRack1_EffectUnit2_Effect3]", "enabled", function(v
 engine.connectControl("[Channel1]","loop_enabled", function(group) { mp.loopEnabled("[Channel1]"); });
 engine.connectControl("[Channel2]","loop_enabled", function(group) { mp.loopEnabled("[Channel2]"); });
 
+engine.connectControl("[Channel1]","keylock", function(value, group) { mp.setLED(0x90, 0x0d, value); });
+engine.connectControl("[Channel2]","keylock", function(value, group) { mp.setLED(0x91, 0x0d, value); });
+
 //----The SYNC-Button is connected to Preview. The CUE button is just too close to the PLAY button
 //engine.connectControl("[PreviewDeck1]","play", function(value, offset, group) { mp.setLED(value, 0x02, "[Channel1]"); });
 //engine.connectControl("[PreviewDeck1]","play", function(value, offset, group) { mp.setLED(value, 0x02, "[Channel2]"); });
@@ -760,7 +763,7 @@ mp.keyLock = function (midichan, control, value, status, group) {
 		//script.toggleControl(group, "keylock_toggle", 100);
 		var keyLock = engine.getValue(group, "keylock");
 		engine.setValue(group, "keylock", !keyLock);
-		midi.sendShortMsg(0x90 + deck, 0x0d, value && !keyLock);
+		//midi.sendShortMsg(0x90 + deck, 0x0d, value && !keyLock);
 	}else{
 		//engine.setValue(group, "keylock", 1);
 	}
