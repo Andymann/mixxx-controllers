@@ -107,13 +107,6 @@ mp.init = function() {
         mp.recreatePads(1);
     }, true);
 
-    //midi.sendShortMsg(0x90, 0x1B, 0x00);    // Headphone-cue left
-    //midi.sendShortMsg(0x91, 0x1B, 0x00);    // Headphone-cue right
-
-    //----QuickFX initially OFF; setValue also works
-    //engine.setParameter("[QuickEffectRack1_[Channel1]_Effect1]", "enabled", 0);
-    //engine.setParameter("[QuickEffectRack1_[Channel2]_Effect1]", "enabled", 0);
-
     //----Library focussed on the right-side pane
     //engine.setValue("[Library]", "MoveFocusForward", 1);
     //engine.setValue("[Library]", "MoveFocusBackward", 1);
@@ -608,7 +601,6 @@ mp.flashX = function(deck){
 
 mp.crossFaderCoarse = function(midichan, control, value, status, group){
     engine.setValue(group, "crossfader", value/0x40 -1);
-
 };
 
 mp.crossFaderFine = function(midichan, control, value, status, group){
@@ -810,11 +802,6 @@ mp.setMasterVU = function(pStatus, pNumber, pValue){
 	midi.sendShortMsg(pStatus, pNumber, val*multi);    //Pads left
 };
 
-/*
-mp.pitchCoarse = function (midichan, control, value, status, group) {
-	engine.setValue(group, "rate", (-1.0)*(value/63 -1.0));
-};
-*/
 mp.pitch = function (midichan, control, value, status, group) {
 	var deck = script.deckFromGroup(group);
 	deck -= 1;
