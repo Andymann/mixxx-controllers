@@ -195,8 +195,10 @@ engine.connectControl("[Channel2]", "playposition", function(value, group) { mp.
 engine.connectControl("[Channel1]", "pfl", function(value, group) { mp.setLED(0x90, 0x1b, value); });
 engine.connectControl("[Channel2]", "pfl", function(value, group) { mp.setLED(0x91, 0x1b, value); });
 
-engine.connectControl("[Channel1]", "VuMeter", function(value, group) { mp.setMasterVU(0xb0, 0x1f, value); });
-engine.connectControl("[Channel2]", "VuMeter", function(value, group) { mp.setMasterVU(0xb1, 0x1f, value); });
+//engine.connectControl("[Channel1]", "VuMeter", function(value, group) { mp.setMasterVU(0xb0, 0x1f, value); });
+//engine.connectControl("[Channel2]", "VuMeter", function(value, group) { mp.setMasterVU(0xb1, 0x1f, value); });
+engine.connectControl("[Master]", "VuMeterL", function(value, group) { mp.setMasterVU(0xb0, 0x1f, value, -1); });
+engine.connectControl("[Master]", "VuMeterR", function(value, group) { mp.setMasterVU(0xb1, 0x1f, value, 1); });
 
 engine.connectControl("[Channel1]", "VuMeter", function(value, group) { mp.setChannelVU(0xbf, 0x19, value, group); });
 engine.connectControl("[Channel2]", "VuMeter", function(value, group) { mp.setChannelVU(0xbf, 0x1d, value, group); });
@@ -801,10 +803,19 @@ mp.setChannelVU = function(pStatus, pNumber, pValue, group){
 	midi.sendShortMsg(pStatus, pNumber, val*multi);    //Pads left
 };
 
-mp.setMasterVU = function(pStatus, pNumber, pValue){
+mp.setMasterVU = function(pStatus, pNumber, pValue, pChannel){
 	var val = pValue*10.0;
-	var multi = engine.getParameter("[Master]","crossfader");
+	//var multi = engine.getParameter("[Master]","crossfader");
 	//multi += -1;
+    var multi;
+    if(pChannel==-1){
+        multi = engine.getParameter("[Master]","VuMeterL");
+    }else if(pChannel==1){
+        multi = engine.getParameter("[Master]","VuMeterR");
+    }else{
+        multi = 0;
+    }
+    
 	midi.sendShortMsg(pStatus, pNumber, val*multi);    //Pads left
 };
 
