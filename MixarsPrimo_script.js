@@ -604,6 +604,10 @@ mp.flashX = function(deck){
 
 mp.crossFaderCoarse = function(midichan, control, value, status, group){
     engine.setValue(group, "crossfader", value/0x3f -1);
+
+    engine.setParameter("[EffectRack1_EffectUnit1]", "mix", 1.0 -value/0x7F);
+    engine.setParameter("[EffectRack1_EffectUnit2]", "mix", value/0x7F);
+
 };
 
 mp.crossFaderFine = function(midichan, control, value, status, group){
