@@ -60,7 +60,8 @@ mp.pitchLsbValue = [0x00, 0x00];
 mp.scratchParams = {
     recordSpeed: 33 + 1/3,
     alpha: (1.0/10),
-    beta: (1.0/10)/32
+    beta: (1.0/10)/32,
+    ramp: true
 };
 
 var previousMode;
@@ -112,9 +113,8 @@ mp.init = function() {
     //engine.setValue("[Library]", "MoveFocusBackward", 1);
 
     //----Zum Start das Item mit Playlists aufklappen
-    //engine.setValue("[Library]", "MoveDown", 1);
-    //engine.setValue("[Library]", "MoveDown", 1);
-    //engine.setValue("[Library]", "GoToItem", 1);
+    //engine.setValue("[Library]", "MoveVertical", 2);
+
 };
 
 mp.shutdown = function() {
@@ -636,7 +636,7 @@ mp.lineFaderFine = function(midichan, control, value, status, group){
 mp.jogWheelTouch = function(midichan, control, value, status, group){
     var deckFromGroup = script.deckFromGroup(group);
     if(value == 0x7f){
-        engine.scratchEnable(deckFromGroup, 360, mp.scratchParams.recordSpeed, mp.scratchParams.alpha, mp.scratchParams.beta);
+        engine.scratchEnable(deckFromGroup, 360, mp.scratchParams.recordSpeed, mp.scratchParams.alpha, mp.scratchParams.beta, mp.scratchParams.ramp);
     }else{
         engine.scratchDisable(deckFromGroup);
     }
@@ -658,7 +658,7 @@ mp.jogWheelTwist = function(midichan, control, value, status, group){
     if (engine.isScratching(deckFromGroup)) {
         engine.scratchTick(deckFromGroup, newValue/1.75); // Scratch!
     }else{
-        engine.setValue(group, 'jog', newValue/0x0f); // Pitch bend
+        engine.setValue(group, 'jog', newValue/0x0a); // Pitch bend
     }
 };
 
@@ -820,7 +820,6 @@ mp.fx = function (midichan, control, value, status, group) {
 	var deck = script.deckFromGroup(group);
 	
 	if(value>0){
-		
 		if((status==0x98)||(status==0x99)){	// Buttons
 			var enabled;
 			if(control==0x00){
