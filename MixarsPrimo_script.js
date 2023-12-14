@@ -61,7 +61,7 @@ mp.scratchParams = {
     ticks: 600,
     recordSpeed: 33 + 1/3,
     alpha: (0.25/10),
-    beta: (1.0/10)/32,
+    beta: (1.25/10)/32,
     ramp: false
 };
 
