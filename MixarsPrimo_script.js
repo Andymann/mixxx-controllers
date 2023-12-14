@@ -60,9 +60,9 @@ mp.pitchLsbValue = [0x00, 0x00];
 mp.scratchParams = {
     ticks: 600,
     recordSpeed: 33 + 1/3,
-    alpha: (1.0/10),
+    alpha: (0.25/10),
     beta: (1.0/10)/32,
-    ramp: true
+    ramp: false
 };
 
 var previousMode;
@@ -669,6 +669,7 @@ mp.jogWheelTwist = function(midichan, control, value, status, group){
     else if (value < 0x40) {
         newValue = value-0x41;
     }
+    
     
     if (engine.isScratching(deckFromGroup)) {
         engine.scratchTick(deckFromGroup, newValue); // Scratch!
