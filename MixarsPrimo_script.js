@@ -671,7 +671,7 @@ mp.jogWheelTwist = function(midichan, control, value, status, group){
     }
     
     if (engine.isScratching(deckFromGroup)) {
-        engine.scratchTick(deckFromGroup, (newValue/1.0)); // Scratch!
+        engine.scratchTick(deckFromGroup, newValue); // Scratch!
     }else{
         engine.setValue(group, 'jog', newValue/0x0a); // Pitch bend
     }
@@ -887,7 +887,6 @@ mp.touchStrip = function (midichan, control, value, status, group) {
 	if(!bShift){
 		engine.setValue(group, "playposition", value/127);
 	}
-
 };
 mp.syncButton = function(midichan, control, value, status, group){
     
