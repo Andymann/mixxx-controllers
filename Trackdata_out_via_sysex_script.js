@@ -23,6 +23,10 @@ const SYSEX_ID_FILEBPM = "0x7F 0x02 0x2";    // 5 Bytes (27 hours max), digit by
 const SYSEX_ID_FILEKEY = "0x7F 0x02 0x3";    // 1 Byte, constant value, https://manual.mixxx.org/2.3/en/chapters/appendix/mixxx_controls.html#control-[ChannelN]-key
 const SYSEX_ID_COLOR = "0x7F 0x02 0x4";      // Decimal representation of 3 Bytes: 8 digits. 0..16777215, constant value
 
+const CROSSFADER_SEND_CC = true;             // true to send crossfader as CC message in addition to sysex
+const CROSSFADER_CC_CHANNEL = 0xB0;          // channel 1 = 0xB0 - channel 16 = 0xBF
+const CROSSFADER_CC_EVENT = 0x30;            // MIDI CC Event # to send, default ist 48 (crossfader)
+
 const RESENDS = 3;
 
 //function TrackDataOut() {}
@@ -191,6 +195,11 @@ controller.changeCrossfader = function(group, bResend){
     sysex +=" ";
     sysex += SYSEX_MSG_END;
     sendSysex( sysex, bResend);
+    
+	if(CROSSFADER_SEND_CC){ //send crossfader value as CC message
+		midi.sendShortMsg(CROSSFADER_CC_CHANNEL, CROSSFADER_CC_EVENT, this.getCrossFaderValue())
+	}
+		
 };
 
 controller.changePlaystate = function(group, bResend){
@@ -238,12 +247,16 @@ controller.getIsPlayingSysex = function(group){
     return isPlaying;
 }
 
-
-controller.getCrossFaderSysex = function(group){
+controller.getCrossFaderValue = function(){
     // -1.0 .. 1.0
     var t = engine.getValue("[Master]", "crossfader");
     t += 1.0;  //0.0..2.0
     var cf =  127.0 * t/2.0;
+    return cf.toString();
+};
+
+controller.getCrossFaderSysex = function(group){
+    var cf =  this.getCrossFaderValue();
     cf = String(cf, 16);
     cf = prePadding(cf, 1, "0");
     return SYSEX_ID_CROSSFADER + script.deckFromGroup(group) + " " + cf.toString();
