@@ -545,6 +545,16 @@
             </control>
             <control>
                 <group>[Master]</group>
+                <key>mp.masterGain</key>
+                <description>Master gain</description>
+                <status>0xbf</status>
+                <midino>0x0a</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Master]</group>
                 <key>mp.crossFaderCoarse</key>
                 <description>Crossfader (coarse)</description>
                 <status>0xbf</status>
@@ -1123,7 +1133,26 @@
                     <script-binding/>
                 </options>
             </control>
-        
+            <control>
+                <group>[Channel1]</group>
+                <key>mp.syncButton</key>
+                <description></description>
+                <status>0x90</status>
+                <midino>0x02</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+			<control>
+                <group>[Channel2]</group>
+                <key>mp.syncButton</key>
+                <description></description>
+                <status>0x91</status>
+                <midino>0x02</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>	
         </controls>
         <outputs/>
     </controller>

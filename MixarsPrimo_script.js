@@ -58,9 +58,11 @@ mp.pitchLsbValue = [0x00, 0x00];
 
 // Scratch algorithm parameters
 mp.scratchParams = {
+    ticks: 600,
     recordSpeed: 33 + 1/3,
-    alpha: (1.0/10),
-    beta: (1.0/10)/32
+    alpha: (0.25/10),
+    beta: (1.25/10)/32,
+    ramp: false
 };
 
 var previousMode;
@@ -107,23 +109,13 @@ mp.init = function() {
         mp.recreatePads(1);
     }, true);
 
-    
-    
-    //midi.sendShortMsg(0x90, 0x1B, 0x00);    // Headphone-cue left
-    //midi.sendShortMsg(0x91, 0x1B, 0x00);    // Headphone-cue right
-
-    //----QuickFX initially OFF; setValue also works
-    //engine.setParameter("[QuickEffectRack1_[Channel1]_Effect1]", "enabled", 0);
-    //engine.setParameter("[QuickEffectRack1_[Channel2]_Effect1]", "enabled", 0);
-
     //----Library focussed on the right-side pane
     //engine.setValue("[Library]", "MoveFocusForward", 1);
     //engine.setValue("[Library]", "MoveFocusBackward", 1);
 
     //----Zum Start das Item mit Playlists aufklappen
-    //engine.setValue("[Library]", "MoveDown", 1);
-    //engine.setValue("[Library]", "MoveDown", 1);
-    //engine.setValue("[Library]", "GoToItem", 1);
+    //engine.setValue("[Library]", "MoveVertical", 2);
+
 };
 
 mp.shutdown = function() {
@@ -203,8 +195,10 @@ engine.connectControl("[Channel2]", "playposition", function(value, group) { mp.
 engine.connectControl("[Channel1]", "pfl", function(value, group) { mp.setLED(0x90, 0x1b, value); });
 engine.connectControl("[Channel2]", "pfl", function(value, group) { mp.setLED(0x91, 0x1b, value); });
 
-engine.connectControl("[Channel1]", "VuMeter", function(value, group) { mp.setMasterVU(0xb0, 0x1f, value); });
-engine.connectControl("[Channel2]", "VuMeter", function(value, group) { mp.setMasterVU(0xb1, 0x1f, value); });
+//engine.connectControl("[Channel1]", "VuMeter", function(value, group) { mp.setMasterVU(0xb0, 0x1f, value); });
+//engine.connectControl("[Channel2]", "VuMeter", function(value, group) { mp.setMasterVU(0xb1, 0x1f, value); });
+engine.connectControl("[Master]", "VuMeterL", function(value, group) { mp.setMasterVU(0xb0, 0x1f, value, -1); });
+engine.connectControl("[Master]", "VuMeterR", function(value, group) { mp.setMasterVU(0xb1, 0x1f, value, 1); });
 
 engine.connectControl("[Channel1]", "VuMeter", function(value, group) { mp.setChannelVU(0xbf, 0x19, value, group); });
 engine.connectControl("[Channel2]", "VuMeter", function(value, group) { mp.setChannelVU(0xbf, 0x1d, value, group); });
@@ -216,10 +210,33 @@ engine.connectControl("[EffectRack1_EffectUnit2_Effect1]", "enabled", function(v
 engine.connectControl("[EffectRack1_EffectUnit2_Effect2]", "enabled", function(value, group) { mp.setLED(0x99, 0x01, value); });
 engine.connectControl("[EffectRack1_EffectUnit2_Effect3]", "enabled", function(value, group) { mp.setLED(0x99, 0x02, value); });
 
+engine.connectControl("[Channel1]","loop_enabled", function(group) { mp.loopEnabled("[Channel1]"); });
+engine.connectControl("[Channel2]","loop_enabled", function(group) { mp.loopEnabled("[Channel2]"); });
+
+engine.connectControl("[Channel1]","keylock", function(value, group) { mp.setLED(0x90, 0x0d, value); });
+engine.connectControl("[Channel2]","keylock", function(value, group) { mp.setLED(0x91, 0x0d, value); });
+
 //----The SYNC-Button is connected to Preview. The CUE button is just too close to the PLAY button
 //engine.connectControl("[PreviewDeck1]","play", function(value, offset, group) { mp.setLED(value, 0x02, "[Channel1]"); });
 //engine.connectControl("[PreviewDeck1]","play", function(value, offset, group) { mp.setLED(value, 0x02, "[Channel2]"); });
 
+
+mp.loadTrack = function (midichan, control, value, status, group) {
+	var deck = script.deckFromGroup(group);
+    mp.lastDeckLoaded = group;
+    mp.mode[deck-1]= MODE_NORMAL;
+    
+	if(value > 0){
+		engine.setValue(group, "LoadSelectedTrack", 1 );
+	}
+
+    //light up the LOAD button
+	midi.sendShortMsg(0x9f, deck+1, value);
+
+    // PFL fuer das Deck aktivieren
+    midi.sendShortMsg(0x90 + deck-1, 0x1B, 0x7F);    // Headphone-cue
+    engine.setParameter("[Channel" + deck.toString() +"]", "pfl", 1);
+};
 
 mp.playpause = function(midichan, control, value, status, group) {
     var deck = script.deckFromGroup(group);
@@ -484,6 +501,7 @@ mp._hotcue_setclear = function(value, group, hotcue){
     }
  };
 
+
  mp.loopToggle = function(midichan, control, value, status, group){
     // beatloop_activate
     var deck = script.deckFromGroup(group)-1;
@@ -588,7 +606,10 @@ mp.flashX = function(deck){
 
 
 mp.crossFaderCoarse = function(midichan, control, value, status, group){
-    engine.setValue(group, "crossfader", value/0x40 -1);
+    engine.setValue(group, "crossfader", value/0x3f -1);
+
+    engine.setParameter("[EffectRack1_EffectUnit1]", "mix", 1.0 -value/0x7F);
+    engine.setParameter("[EffectRack1_EffectUnit2]", "mix", value/0x7F);
 
 };
 
@@ -625,29 +646,35 @@ mp.lineFaderFine = function(midichan, control, value, status, group){
 mp.jogWheelTouch = function(midichan, control, value, status, group){
     var deckFromGroup = script.deckFromGroup(group);
     if(value == 0x7f){
-        engine.scratchEnable(deckFromGroup, 360, mp.scratchParams.recordSpeed, mp.scratchParams.alpha, mp.scratchParams.beta);
+        engine.scratchEnable(deckFromGroup, mp.scratchParams.ticks, mp.scratchParams.recordSpeed, mp.scratchParams.alpha, mp.scratchParams.beta, mp.scratchParams.ramp);
     }else{
         engine.scratchDisable(deckFromGroup);
     }
 };
 
 mp.jogWheelTwist = function(midichan, control, value, status, group){
-    var deckFromGroup = script.deckFromGroup(group);
-    var newValue;
-    if (value > 0x40) {
-        newValue = value;
-        newValue -= 0x3f;
-        //newValue=1;
-    } else if (value < 0x40) {
-        newValue = value;
-        newValue -= 0x41
-        //newValue = -1;
+    //var deckFromGroup = script.deckFromGroup(group);
+    // We want extra-tight behaviour that's why deckFromGroup is not derived from an
+    // expensive string-operation
+    var deckFromGroup = 1;
+    if(status==0xB1){
+        deckFromGroup=2;
     }
-
+    
+    var newValue;
+    
+    if (value > 0x40) {
+        newValue = value-0x3F;
+    } 
+    else if (value < 0x40) {
+        newValue = value-0x41;
+    }
+    
+    
     if (engine.isScratching(deckFromGroup)) {
-        engine.scratchTick(deckFromGroup, newValue/1.75); // Scratch!
+        engine.scratchTick(deckFromGroup, newValue); // Scratch!
     }else{
-        engine.setValue(group, 'jog', newValue/0x0f); // Pitch bend
+        engine.setValue(group, 'jog', newValue/0x0a); // Pitch bend
     }
 };
 
@@ -708,113 +735,7 @@ mp.trackPositionLEDs = function(value, group) {
     */
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//************************************************************** 
-
-
-
-mp.starsDown = function(midichan, control, value, status, group){
-    /*engine.setValue("[Library]", "track_color_prev", 1.0);*/
-    engine.setValue(mp.lastDeckLoaded, "stars_down", 1.0);
-};
-mp.starsUp = function(midichan, control, value, status, group){
-    engine.setValue(mp.lastDeckLoaded, "stars_up", 1.0);
-};
-
-// Make PFL Control a little less aggressive
-mp.headGain = function(midichan, control, value, status, group){
-    engine.setValue("[Master]", "headGain", value/666);
-};
-
-mp.starsDeck = function(midichan, control, value, status, group){
-    
-    var deck = script.deckFromGroup(group);
-    if (value == 1){
-        engine.setValue(group, "stars_up", 1.0);
-    }else if(value==127){
-        engine.setValue(group, "stars_down", 1.0);
-    }
-    //engine.setValue(mp.lastDeckLoaded, "stars_up", 1.0);
-};
-
-mp.resetColor = function(midichan, control, value, status, group){
-    //track_color_prev
-    //track_color_next
-    //engine.setValue(group, "track_color", -1.0);
-    
-};
-
-mp.setColor = function(midichan, control, value, status, group){
-    var deck = script.deckFromGroup(group);
-    var midiID = 0x94 + parseInt(deck-1);
-    for (var i = 0; i < 8; i++) { 
-        midi.sendShortMsg(midiID, 0x14 + i, 0x00);    //Pads OFF   
-    }
-    if(value == 127){
-        previousMode = mp.mode[deck-1]; //Eine Variable: Hickhack bei gleichzeitiger Verwendung auf beiden Decks
-        mp.mode[deck-1] = MODE_SETCOLOR;
-        midi.sendShortMsg(midiID, 0x14 + 0, RED);
-        midi.sendShortMsg(midiID, 0x14 + 1, GREEN);
-        midi.sendShortMsg(midiID, 0x14 + 2, VIOLET);
-        midi.sendShortMsg(midiID, 0x14 + 3, ORANGE);
-
-        midi.sendShortMsg(midiID, 0x14 + 4, BLUE);
-        midi.sendShortMsg(midiID, 0x14 + 6, WHITE);
-        midi.sendShortMsg(midiID, 0x14 + 7, WHITE);
-        /*
-
-        const GREEN = 0x7C;
-        const WHITE = 0x7F;
-        const PINK = 0x72;
-        const VIOLET = 0x73;
-        const ORANGE = 0x74;
-        const LIGHTGREEN = 0x78;
-        const RED = 0x70;
-        const BLUE = 0x67 / 0x6B
-        */
-    }else if(value == 0){
-        mp.mode[deck-1] = previousMode;
-        mp.updateDecksAfterModeChange(group);
-    }
-
-};
-
-
 mp.setLED = function (value, offset, group){
-    var deck = script.deckFromGroup(group);
-
     var state_full;
     state_full = value ? 0x7F : 0x00;
 
@@ -826,313 +747,15 @@ mp.setLED = function (value, offset, group){
     }
 };
 
-mp.loadTrack = function(midichan, control, value, status, group){
-    var deck = script.deckFromGroup(group);
-    mp.padsOff_Deck( deck );
-    mp.mode[deck-1]= MODE_NORMAL;
-    
-    engine.setValue(group, "LoadSelectedTrack", 1 );
-    mp.lastDeckLoaded = group;
 
-    // PFL fuer das Deck aktivieren
-    midi.sendShortMsg(0x90 + deck-1, 0x1B, 0x7F);    // Headphone-cue left
-    // midi.sendShortMsg(0x91 + deck-1, 0x1B, 0x7F);    // Headphone-cue right
-
-    engine.setParameter("[Channel" + deck.toString() +"]", "pfl", 1);
-
-};
-
-mp.previewLoadAndPlay = function(midichan, control, value, status, group){
-    if(value == 127){
-        // var isPlaying = engine.getValue(group,"play",1);
-        //if(isPlaying==0){
-        //    engine.setValue(group, "LoadSelectedTrackAndPlay", 1);
-        //}else{
-        //    engine.setValue(group, "stop", 1); 
-        //}
-        engine.setValue(group, "LoadSelectedTrackAndPlay", 1);
-    }else{
-        engine.setValue(group, "stop", 1); 
-    }
-
-};
-
-mp.moveVertical = function(midichan, control, value, status, group){
-    var iStepSize = 1;
-    if(control == 0x78){ // Shift+Twist
-        iStepSize = 15;
-    }
-    if(value == 1){ // Clockwise
-        
-    }else{
-        iStepSize = iStepSize * (-1);
-    }
-    engine.setValue("[Library]", "MoveVertical", iStepSize);
-};
-
-mp.toggleMode = function(midichan, control, value, status, group){
-    
-    var deck = script.deckFromGroup(group);
-    //var color = GREEN;
-    //var midiID = 0x94 + parseInt(deck-1);
-    
-    if( value == 127 ){ //Button DOWN    
-        if (mp.mode[deck-1]==MODE_NORMAL){
-            mp.mode[deck-1]= MODE_SAMPLER;
-            //color = RED;        
-        }else if(mp.mode[deck-1]==MODE_SAMPLER){
-            mp.mode[deck-1]=MODE_NORMAL;
-            //color = WHITE;
-        } 
-    }  
-    mp.updateDecksAfterModeChange(group);
+mp.loopEnabled = function(group){
+    var deck = script.deckFromGroup(group)-1;
+    var b = engine.getValue(group, "loop_enabled");
+    var val = 0x7F && b;
+    midi.sendShortMsg(0x94 + deck, 0x32, val);
 };
 
 
-
-//----DELETE
-mp.updateDecksAfterModeChange = function(group){
-    var deck = script.deckFromGroup(group);
-    var mode = mp.mode[deck-1];
-    var midiID = 0x94 + parseInt(deck-1);
-    var color = GREEN;
-    if(mode == MODE_NORMAL){
-        color = WHITE;
-    }else if(mode == MODE_SAMPLER){
-        color = RED;
-    }
-
-
-    for (var i = 0; i < 8; i++) { 
-        if (mp.mode[deck-1]==MODE_NORMAL){
-            var x = engine.getValue(group, "hotcue_" + (i+1).toString() + "_enabled", 1 );
-            if(x==1){
-                midi.sendShortMsg(midiID, 0x14 + i, color);   
-            }else{
-                midi.sendShortMsg(midiID, 0x14 + i, 0x00);  
-            }
-        }else if(mp.mode[deck-1]==MODE_SAMPLER){
-            var x = engine.getValue("[Sampler"+ (i+1).toString()+"]", "track_loaded", 1 );
-            if(x==1){
-                var tmpCol = engine.getValue("[Sampler"+ (i+1).toString()+"]", "track_color", 1 );
-                if(tmpCol==-1){
-                    midi.sendShortMsg(midiID, 0x14 + i, color);   
-                }else{
-                    midi.sendShortMsg(midiID, 0x14 + i, GREEN);
-                }
-                
-            }else{
-                midi.sendShortMsg(midiID, 0x14 + i, 0x00);  
-            }
-        }
-    }
-}
-
-
-
-mp.storeMSB_Left = function(midichan, control, value, status, group) {
-    lMSB = value;
-};
-
-mp.leftRate = function(midichan, control, value, status, group) {
-    tmp = script.midiPitch(value,lMSB, status);
-    tmp = lMSB*127 + value;
-    engine.setValue(group, "rate", (lMSB*127 + value)/1016);
-};
-
-//----Momentary mapping for the fx-pedal
-mp.fxSwitch = function(midichan, control, value, status, group){
-    if(value == 127){
-        engine.setValue(group, "enabled", 1);
-    }else if(value == 0){
-        engine.setValue(group, "enabled", 0);
-    }
-};
-
-mp.moveToLibraryPane = function(midichan, control, value, status, group){
-    if(value == 127){
-        //----Left pane
-        engine.setValue("[Library]", "MoveFocusBackward", 1);
-        //engine.setValue("[Library]", "MoveFocus", -1);
-    }else if(value == 0){
-        //----Right pane
-        //engine.setValue("[Library]", "MoveFocusForward", 1);
-        //engine.setValue("[Library]", "MoveFocus", 1);
-    }
-};
-
-
-
-
- 
- 
-
-
-
-
-
-
-
-
-// Pitch slider rate change, MSB (Most significant bits in 14bit mode, or directly the value in 7bit)
-mp.deckRateMsb = function(midichan, control, value, status, group) {
-    
-    //var invertval = 127-value;
-    var deck = script.deckFromGroup(group);
-    //Calculating this always, or else the first time will not work
-    //(which is precisely when the controller reports the initial positions)
-    mp.pitchMsbValue[deck - 1] = value;
-    //if (mp.pitch14bitMode === false) {
-    //    engine.setValue(group, "rate", script.midiPitch(0,invertval, status));
-    //}
-};
-
-// Pitch slider rate change, LSB (Least significant bits in 14bit mode, not called in 7bit)
-mp.deckRateLsb = function(midichan, control, value, status, group) {
-        var invertval = 127-value;
-        var deck = script.deckFromGroup(group);
-        var msbval = mp.pitchMsbValue[deck - 1];
-        //mp.pitch14bitMode = true;
-        // engine.setValue(group, "rate", script.midiPitch(invertval,msbval,/*0xE0*/ status));
-        var xvalue = (msbval << 7) | value;// invertval;
-        var xrate = (512-xvalue) / 512;
-        engine.setValue(group, "rate", xrate);
-};
-
-mp.toggleLoop = function(midichan, control, value, status, group){
-    // beatloop_activate
-    var deck = script.deckFromGroup(group);
-
-    var loopActive = engine.getValue(group, "loop_enabled");
-
-    //---Maybe 'someone' cvhanged 'something' via the GUI
-    mp.loopState[deck -1]= loopActive;
-
-   if(value == 127){
-        if(mp.loopState[deck -1]==STATE_INACTIVE){
-            mp.loopState[deck -1] = STATE_ACTIVE;
-            engine.setValue(group, "beatloop_activate", 1);
-        }else if(mp.loopState[deck -1]==STATE_ACTIVE){
-            mp.loopState[deck -1] = STATE_INACTIVE;
-            engine.setValue(group, "loop_exit", 1);
-        }
-    }
-};
-
-mp.setLoopsize = function(midichan, control, value, status, group){
-    // [Channel1],loop_double
-    var deck = script.deckFromGroup(group);
-    
-    if(value == 127){ //CounterClockWise
-        engine.setValue(group, "loop_halve", 1);
-    }else{
-        engine.setValue(group, "loop_double", 1);
-    }
-};
-
-mp.wheelTouchA = function (midichan, control, value, status, group) {
-    var deck = script.deckFromGroup(group);
-    if(value > 0){
-        var alpha = 1.0/8;
-        var beta = alpha/32;
-        engine.scratchEnable(deck, 360, 33+1/3, alpha, beta);
-    }else{
-        engine.scratchDisable(deck);
-    }
-};
-
-mp.scratchWheelA = function (midichan, control, value, status, group) {
-    var deck = script.deckFromGroup(group);
-    
-    var newValue;
-    if (value < 64) {
-        newValue = value;
-    } else {
-        newValue = value - 128;
-    }
-
-    if (engine.isScratching(deck)) {
-        engine.scratchTick(deck, newValue); // Scratch!
-    }else{
-        engine.setValue(group, 'jog', newValue); // Pitch bend
-    }
-};
-
-
-mp.wheelTouchB = function (midichan, control, value, status, group) {
-    var deck = script.deckFromGroup(group);
-    if(value > 0){
-        var alpha = 1.0/8;
-        var beta = alpha/32;
-        engine.scratchEnable(deck, 360, 33+1/3, alpha, beta);
-    }else{
-        engine.scratchDisable(deck);
-    }
-};
-
-mp.scratchWheelB = function (midichan, control, value, status, group) {
-    var deck = script.deckFromGroup(group);
-    
-    var newValue;
-    if (value < 64) {
-        newValue = value;
-    } else {
-        newValue = value - 128;
-    }
-
-    if (engine.isScratching(deck)) {
-        engine.scratchTick(deck, newValue); // Scratch!
-    }else{
-        engine.setValue(group, 'jog', newValue); // Pitch bend
-    }
-};
-
-mp.addAutoDJ = function (midichan, control, value, status, group) {
-    if (value > 64) {
-        engine.setValue("[Library]", "AutoDjAddBottom", 1);
-    } else {
-        //NOP
-    }
-};
-
-mp.libraryScroll = function (midichan, control, value, status, group) {
-
-	var iStepSize = 1;
-	if(control == 0x01){
-		iStepSize = 10;
-	}
-	if(value==0x3f){
-		engine.setValue("[Library]", "MoveVertical", iStepSize);
-	}else if(value==0x41){
-		engine.setValue("[Library]", "MoveVertical", iStepSize * (-1));
-	}
-};
-
-
-mp.loadTrack = function (midichan, control, value, status, group) {
-	var deck = script.deckFromGroup(group);
-
-	if(value > 0){
-		engine.setValue(group, "LoadSelectedTrack", 1 );
-	}
-
-	midi.sendShortMsg(0x9f, deck+1, value);
-};
-
-mp.scrollWheelClick = function (midichan, control, value, status, group) {
-	if(control == 0x06){
-		if(value > 0){
-			bScrollWheelClick = true;
-			engine.setValue("[Library]", "MoveFocusBackward", 1);
-		}else{
-			bScrollWheelClick = false;
-		}
-	}else if(control == 0x07){ // Click+Shift
-		if(value > 0){
-			engine.setValue("[Library]", "GoToItem", 1);
-		}
-	}
-};
 
 mp.keyLock = function (midichan, control, value, status, group) {
 	var deck = script.deckFromGroup(group);
@@ -1141,7 +764,7 @@ mp.keyLock = function (midichan, control, value, status, group) {
 		//script.toggleControl(group, "keylock_toggle", 100);
 		var keyLock = engine.getValue(group, "keylock");
 		engine.setValue(group, "keylock", !keyLock);
-		midi.sendShortMsg(0x90 + deck, 0x0d, value && !keyLock);
+		//midi.sendShortMsg(0x90 + deck, 0x0d, value && !keyLock);
 	}else{
 		//engine.setValue(group, "keylock", 1);
 	}
@@ -1173,6 +796,11 @@ mp.eq = function (midichan, control, value, status, group) {
 	}
 };
 
+mp.masterGain = function (midichan, control, value, status, group) {
+    //engine.setValue("[Master]","gain" , value*(5/127.0) -value*(3.0/127));
+    engine.setValue("[Master]","gain" , value*(5.0/127.0) );
+};
+
 mp.gain = function (midichan, control, value, status, group) {
 	engine.setValue(group,"pregain" , value*(4/127.0)-value*(2.0/127));
 };
@@ -1188,15 +816,20 @@ mp.setChannelVU = function(pStatus, pNumber, pValue, group){
 	midi.sendShortMsg(pStatus, pNumber, val*multi);    //Pads left
 };
 
-mp.setMasterVU = function(pStatus, pNumber, pValue){
+mp.setMasterVU = function(pStatus, pNumber, pValue, pChannel){
 	var val = pValue*10.0;
-	var multi = engine.getParameter("[Master]","crossfader");
+	//var multi = engine.getParameter("[Master]","crossfader");
 	//multi += -1;
+    var multi;
+    if(pChannel==-1){
+        multi = engine.getParameter("[Master]","VuMeterL");
+    }else if(pChannel==1){
+        multi = engine.getParameter("[Master]","VuMeterR");
+    }else{
+        multi = 0;
+    }
+    
 	midi.sendShortMsg(pStatus, pNumber, val*multi);    //Pads left
-};
-
-mp.pitchCoarse = function (midichan, control, value, status, group) {
-	engine.setValue(group, "rate", (-1.0)*(value/63 -1.0));
 };
 
 mp.pitch = function (midichan, control, value, status, group) {
@@ -1217,7 +850,6 @@ mp.fx = function (midichan, control, value, status, group) {
 	var deck = script.deckFromGroup(group);
 	
 	if(value>0){
-		
 		if((status==0x98)||(status==0x99)){	// Buttons
 			var enabled;
 			if(control==0x00){
@@ -1243,20 +875,47 @@ mp.fx = function (midichan, control, value, status, group) {
 };
 
 mp.cueButton = function (midichan, control, value, status, group) {
-	var deck = script.deckFromGroup(group);
-	
-
+	//var deck = script.deckFromGroup(group);
 };
 
 mp.censor = function (midichan, control, value, status, group) {
 	var val = (value > 0)? 1:0;
 	engine.setValue(group, "reverseroll", val);
-
+    mp.setLED(status, control, value)
 };
 
 mp.touchStrip = function (midichan, control, value, status, group) {
 	if(!bShift){
 		engine.setValue(group, "playposition", value/127);
 	}
+};
+mp.syncButton = function(midichan, control, value, status, group){
+    
+};
 
+mp.libraryScroll = function (midichan, control, value, status, group) {
+	var iStepSize = 1;
+	if(control == 0x01){
+		iStepSize = 10;
+	}
+	if(value==0x3f){
+		engine.setValue("[Library]", "MoveVertical", iStepSize);
+	}else if(value==0x41){
+		engine.setValue("[Library]", "MoveVertical", iStepSize * (-1));
+	}
+};
+
+mp.scrollWheelClick = function (midichan, control, value, status, group) {
+	if(control == 0x06){
+		if(value > 0){
+			bScrollWheelClick = true;
+			engine.setValue("[Library]", "MoveFocusBackward", 1);
+		}else{
+			bScrollWheelClick = false;
+		}
+	}else if(control == 0x07){ // Click+Shift
+		if(value > 0){
+			engine.setValue("[Library]", "GoToItem", 1);
+		}
+	}
 };
